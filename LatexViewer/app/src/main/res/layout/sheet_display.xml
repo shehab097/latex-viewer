@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:paddingHorizontal="24dp" android:paddingTop="8dp" android:paddingBottom="32dp">
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Display" android:textAppearance="?attr/textAppearanceTitleLarge"/>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="20dp" android:text="Theme" android:textAppearance="?attr/textAppearanceLabelLarge"/>
+    <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content" android:scrollbars="none">
+        <com.google.android.material.chip.ChipGroup android:id="@+id/themes" android:layout_width="wrap_content" android:layout_height="wrap_content" app:singleSelection="true" app:selectionRequired="true" app:singleLine="true">
+            <com.google.android.material.chip.Chip android:id="@+id/c_light" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Light"/> <com.google.android.material.chip.Chip android:id="@+id/c_dark" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Dark"/> <com.google.android.material.chip.Chip android:id="@+id/c_gray" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Gray"/> <com.google.android.material.chip.Chip android:id="@+id/c_grayscale" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Grayscale"/> <com.google.android.material.chip.Chip android:id="@+id/c_night" style="@style/Widget.Material3.Chip.Filter" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Night light"/>
+        </com.google.android.material.chip.ChipGroup>
+    </HorizontalScrollView>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Font" android:textAppearance="?attr/textAppearanceLabelLarge"/>
+    <com.google.android.material.button.MaterialButtonToggleGroup android:id="@+id/fonts" android:layout_width="match_parent" android:layout_height="wrap_content" android:layout_marginTop="8dp" app:singleSelection="true" app:selectionRequired="true">
+        <Button android:id="@+id/b_serif" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Serif" android:fontFamily="serif"/>
+        <Button android:id="@+id/b_sans" style="?attr/materialButtonOutlinedStyle" android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:text="Sans serif" android:fontFamily="sans-serif"/>
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="16dp" android:text="Text size (%)" android:textAppearance="?attr/textAppearanceLabelLarge"/>
+    <com.google.android.material.slider.Slider android:id="@+id/slider" android:layout_width="match_parent" android:layout_height="wrap_content" android:valueFrom="60" android:valueTo="250" android:stepSize="10" android:value="100"/>
+    <Button android:id="@+id/reset" style="@style/Widget.Material3.Button.TextButton" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="end" android:text="Reset size"/>
+</LinearLayout>

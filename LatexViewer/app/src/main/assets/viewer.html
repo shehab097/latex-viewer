@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=0.5, maximum-scale=5, user-scalable=yes">
+<!-- OFFLINE use: put katex (katex.min.css/js + fonts/) and marked.min.js in assets/ and change these 3 URLs. -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+<script src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+<style>
+:root{--bg:#fff;--fg:#1b1b1f;--mu:rgba(128,128,128,.4)}
+body.dark{--bg:#121212;--fg:#e3e3e3}
+body.gray{--bg:#c4c4c4;--fg:#1a1a1a}
+body.grayscale{--bg:#f2f2f2;--fg:#111}
+html.grayscale{filter:grayscale(1)}
+body.night{--bg:#f4e8d0;--fg:#4a3b2a}
+html.night{filter:sepia(.25) brightness(.92)}
+html{font-size:17px}
+body{background:var(--bg);color:var(--fg);margin:0;padding:20px clamp(16px,5vw,56px) 64px;line-height:1.7;overflow-wrap:anywhere;-webkit-text-size-adjust:100%}
+body.serif{font-family:'Latin Modern Roman','Times New Roman',Georgia,serif}
+body.serif p{text-align:justify;hyphens:auto}
+body.sans{font-family:Roboto,'Segoe UI',Arial,sans-serif}
+#c{max-width:46rem;margin:0 auto}
+h1,h2,h3,h4{line-height:1.25;margin:1.6em 0 .6em}
+h1{font-size:1.9em}h2{font-size:1.45em}h3{font-size:1.2em}h4{font-size:1em}
+p{margin:.85em 0}
+.dm{overflow-x:auto;overflow-y:hidden;margin:1em 0;text-align:center}
+.katex{font-size:1.06em;overflow-wrap:normal}
+.ttl{text-align:center;margin:1em 0 2em}.ttl h1{margin:0 0 .3em}.ttl div{opacity:.8}
+.abs{margin:1.5em 2em;font-size:.95em}.abs h4{text-align:center;margin:0 0 .4em}
+.th{margin:1em 0;padding-left:.8em;border-left:3px solid var(--mu)}
+.qed{float:right}
+.toc{margin:1.5em 0;padding:12px 16px;border:1px solid var(--mu);border-radius:12px}
+figure{margin:1.2em 0;text-align:center}figcaption{font-size:.92em;margin:.5em 0}
+.ph{display:inline-block;padding:18px 28px;border:2px dashed var(--mu);border-radius:12px;opacity:.7;font-size:.9em}
+.fns{font-size:.9em}.u{text-decoration:underline}.c{text-align:center}.r{text-align:right}
+ul.desc{list-style:none;padding-left:0}
+pre,code{font-family:ui-monospace,Menlo,Consolas,monospace;background:rgba(128,128,128,.18);border-radius:6px}
+pre{padding:12px;overflow-x:auto}code{padding:1px 5px;font-size:.9em}pre code{background:none;padding:0}
+.tw{overflow-x:auto;margin:1em 0}
+table{border-collapse:collapse;margin:0 auto}td,th{border:1px solid var(--mu);padding:5px 10px}
+table.tex td,table.tex th{border:0}
+table.tex.grid td,table.tex.grid th{border:1px solid var(--fg)}
+table.tex.bt{border-top:2px solid var(--fg);border-bottom:2px solid var(--fg)}
+table.tex.bt tr:first-child th{border-bottom:1px solid var(--fg)}
+img{max-width:100%}blockquote{margin-left:0;padding-left:1em;border-left:3px solid var(--mu)}
+.katex-display{overflow-x:auto;overflow-y:hidden}
+</style></head>
+<body><div id="c"></div>
+<script>
+const A='((?:[^{}]|\\{(?:[^{}]|\\{[^{}]*\\})*\\})*)';
+const BASE={"\\bm":"\\boldsymbol{#1}","\\mathbbm":"\\mathbb{#1}","\\qedhere":"","\\nonumber":"","\\notag":""};
+let M=[],LAB={},MAC={},EQ=0,FNT=[];
+const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+const stash=(h,blk)=>{M.push(h);const c=blk?'\u0004':'\u0001';return c+(M.length-1)+c};
+const RS=/[\u0001\u0004](\d+)[\u0001\u0004]/g;
+function km(t,d){t=t.replace(/\\(begin|end)\{split\}/g,'\\$1{aligned}');
+ try{return katex.renderToString(t,{displayMode:d,throwOnError:false,macros:MAC})}catch(e){return '<code>'+esc(t)+'</code>'}}
+const dm=h=>stash('<div class="dm">'+h+'</div>',true);
+const nl=s=>s.replace(/\\label\{[^}]*\}/g,'');
+function splitRows(b){const r=[];let d=0,last=0,m;const re=/\\begin\{|\\end\{|\\\\/g;
+ while((m=re.exec(b))){if(m[0]==='\\\\'){if(d===0){r.push(b.slice(last,m.index));last=m.index+2}}else if(m[0]==='\\begin{')d++;else d--}
+ r.push(b.slice(last));return r}
+function numbered(b,multi){
+ return (multi?splitRows(b):[b]).map(r=>{const lm=r.match(/\\label\{([^}]*)\}/);r=r.replace(/\\label\{[^}]*\}/g,'');
+  if(/\\(nonumber|notag)\b/.test(r)||!r.trim())return r.replace(/\\(nonumber|notag)\b/g,'');
+  EQ++;if(lm)LAB[lm[1]]=EQ;return r+'\\tag{'+EQ+'}'}).join('\\\\')}
+function math(s,strict){
+ s=s.replace(/\\begin\{(equation\*?)\}([\s\S]*?)\\end\{\1\}/g,(_,e,b)=>dm(km(e==='equation'?numbered(b,false):nl(b).replace(/\\(nonumber|notag)\b/g,''),true)));
+ s=s.replace(/\\begin\{(align|gather|eqnarray|multline|flalign)(\*?)\}([\s\S]*?)\\end\{\1\2\}/g,(_,e,st,b)=>{
+  const n=(e==='eqnarray'||e==='flalign')?'align':e==='multline'?'gather':e;
+  if(e==='eqnarray')b=b.replace(/&([^&\\]*)&/g,'&$1');
+  return dm(km('\\begin{'+n+'*}'+(st?nl(b).replace(/\\(nonumber|notag)\b/g,''):numbered(b,true))+'\\end{'+n+'*}',true))});
+ s=s.replace(/\$\$([\s\S]+?)\$\$/g,(_,b)=>dm(km(b,true)));
+ s=s.replace(/\\\[([\s\S]+?)\\\]/g,(_,b)=>dm(km(b,true)));
+ s=s.replace(/\\\(([\s\S]+?)\\\)/g,(_,b)=>stash(km(b,false)));
+ const re=strict?/(?<![\\$])\$(?![\s$])((?:[^$\\\n]|\\.)+?)(?<![\s\\])\$(?!\d)/g:/(?<!\\)\$((?:(?!\n[ \t]*\n)[^$\\]|\\[\s\S])+?)\$/g;
+ return s.replace(re,(_,b)=>stash(km(b,false)))}
+function cmd(s,name,f){const re=new RegExp('\\\\'+name+'\\*?\\{'+A+'\\}','g');for(let i=0;i<4;i++){const n=s.replace(re,f);if(n===s)break;s=n}return s}
+function brace(s){s=s.replace(/^\s+/,'');if(s[0]!=='{')return['',s];let d=0;for(let i=0;i<s.length;i++){if(s[i]==='{')d++;else if(s[i]==='}'&&--d===0)return[s.slice(1,i),s.slice(i+1)]}return['',s]}
+const AC={"'":'\u0301','`':'\u0300','^':'\u0302','"':'\u0308','~':'\u0303','=':'\u0304','.':'\u0307'};
+const SY={ss:'ß',oe:'œ',OE:'Œ',ae:'æ',AE:'Æ',aa:'å',AA:'Å',o:'ø',O:'Ø',l:'ł',L:'Ł',ldots:'…',dots:'…',textellipsis:'…',LaTeX:'LaTeX',TeX:'TeX',S:'§',P:'¶',copyright:'©',textbackslash:'\\',textasciitilde:'~',textbar:'|',textendash:'–',textemdash:'—',textquoteright:'’',textquoteleft:'‘',textbullet:'•',dag:'†',ddag:'‡',pounds:'£',euro:'€',textdegree:'°'};
+function inline(s){
+ s=cmd(s,'(?:textbf)',(_,a)=>'<b>'+a+'</b>');
+ s=cmd(s,'(?:textit|emph|textsl)',(_,a)=>'<i>'+a+'</i>');
+ s=cmd(s,'texttt',(_,a)=>'<code>'+a+'</code>');
+ s=cmd(s,'(?:underline|uline)',(_,a)=>'<u>'+a+'</u>');
+ s=cmd(s,'textsc',(_,a)=>'<span style="font-variant:small-caps">'+a+'</span>');
+ s=cmd(s,'textsuperscript',(_,a)=>'<sup>'+a+'</sup>');
+ s=cmd(s,'textsubscript',(_,a)=>'<sub>'+a+'</sub>');
+ s=cmd(s,'url',(_,a)=>'<span class="u">'+a+'</span>');
+ s=s.replace(new RegExp('\\\\href\\{[^}]*\\}\\{'+A+'\\}','g'),(_,a)=>'<span class="u">'+a+'</span>');
+ s=s.replace(new RegExp('\\\\(?:textcolor|colorbox)\\{[^}]*\\}\\{'+A+'\\}','g'),(_,a)=>a);
+ s=cmd(s,'(?:textsf|textrm|textnormal|textup|textmd|mbox|hbox|text)',(_,a)=>a);
+ s=cmd(s,'(?:label|index|thanks|hspace|vspace|phantom|hphantom|vphantom)',()=>'');
+ const DS={bf:'b',bfseries:'b',it:'i',itshape:'i',em:'i',sl:'i',tt:'code',ttfamily:'code',sc:'sc',scshape:'sc'};
+ s=s.replace(/\{\\(bf|bfseries|it|itshape|em|sl|tt|ttfamily|sc|scshape)\s+((?:[^{}]|\{[^{}]*\})*)\}/g,(_,k,a)=>{const t=DS[k];return t==='sc'?'<span style="font-variant:small-caps">'+a+'</span>':'<'+t+'>'+a+'</'+t+'>'});
+ s=s.replace(/\\(?:tiny|scriptsize|footnotesize|small|normalsize|large|Large|LARGE|huge|Huge|bfseries|itshape|ttfamily|raggedright|raggedleft)\b/g,'');
+ s=s.replace(/\\includegraphics\*?(?:\[[^\]]*\])?\{([^}]*)\}/g,(_,f)=>stash('<div class="ph">Image: '+f.split('/').pop()+'</div>',true));
+ s=s.replace(/(?<!\\)\\(['`^"~=.])\s*\{?(\\?[a-zA-Z])\}?/g,(_,a,l)=>(l.replace('\\','')+AC[a]).normalize('NFC'));
+ s=s.replace(/\\c\s*\{([a-zA-Z])\}|\\c\s([a-zA-Z])/g,(_,a,b)=>((a||b)+'\u0327').normalize('NFC'));
+ s=s.replace(/\\([a-zA-Z]+) ?/g,(m,n)=>n==='today'?new Date().toLocaleDateString(undefined,{year:'numeric',month:'long',day:'numeric'}):(n in SY?SY[n]:m));
+ s=s.replace(/(?<!\\)\\([,;:!> \-])/g,(_,c)=>c===' '?' ':(c===','||c===';'||c===':')?'\u2009':'');
+ return s.replace(/``/g,'\u201c').replace(/''/g,'\u201d').replace(/---/g,'\u2014').replace(/--/g,'\u2013').replace(/~/g,'&nbsp;')}
+
+function latex(t){
+ const THM={theorem:'Theorem',lemma:'Lemma',proposition:'Proposition',corollary:'Corollary',definition:'Definition',remark:'Remark',example:'Example',proof:'Proof',claim:'Claim',conjecture:'Conjecture',exercise:'Exercise',problem:'Problem',note:'Note'};
+ t=t.replace(/\\begin\{(verbatim\*?|lstlisting|minted)\}(?:\[[^\]]*\])?(?:\{[^}]*\})?([\s\S]*?)\\end\{\1\}/g,(_,e,v)=>stash('<pre><code>'+esc(v.replace(/^\n/,''))+'</code></pre>',true));
+ t=t.replace(/\\begin\{(tikzpicture|pgfpicture|circuitikz)\}[\s\S]*?\\end\{\1\}/g,()=>stash('<div class="ph">TikZ drawing (not rendered)</div>',true));
+ t=t.replace(/\\verb(\*?)([^a-zA-Z*\s])([\s\S]*?)\2/g,(_,s,d,v)=>stash('<code>'+esc(v)+'</code>'));
+ t=t.replace(/(^|[^\\])%.*$/gm,'$1');
+ t=t.replace(new RegExp('\\\\(?:re|provide)?newcommand\\*?\\s*\\{?\\s*(\\\\[a-zA-Z]+)\\s*\\}?\\s*(?:\\[\\d\\])?\\s*(?:\\[[^\\]]*\\])?\\s*\\{'+A+'\\}','g'),(_,n,b)=>{MAC[n]=b;return ''});
+ t=t.replace(new RegExp('\\\\DeclareMathOperator(\\*?)\\s*\\{(\\\\[a-zA-Z]+)\\}\\s*\\{'+A+'\\}','g'),(_,s,n,b)=>{MAC[n]='\\operatorname'+s+'{'+b+'}';return ''});
+ t=t.replace(new RegExp('\\\\def\\s*(\\\\[a-zA-Z]+)\\s*\\{'+A+'\\}','g'),(_,n,b)=>{MAC[n]=b;return ''});
+ t=t.replace(/\\newtheorem\*?\{([^}]*)\}(?:\[[^\]]*\])?\{([^}]*)\}(?:\[[^\]]*\])?/g,(_,n,title)=>{THM[n]=title;return ''});
+ const g=n=>{const m=t.match(new RegExp('\\\\'+n+'\\s*\\{'+A+'\\}'));return m?m[1]:null};
+ const title=g('title'),author=g('author'),date=g('date');
+ const bd=t.match(/\\begin\{document\}([\s\S]*)\\end\{document\}/);if(bd)t=bd[1];
+ const BIB={},bibRaw=[];
+ t=t.replace(/\\begin\{thebibliography\}\{[^}]*\}([\s\S]*?)\\end\{thebibliography\}/,(_,b)=>{
+  b.split(/\\bibitem/).slice(1).forEach(it=>{const m=it.match(/^\s*(?:\[[^\]]*\])?\s*\{([^}]*)\}([\s\S]*)$/);if(m){bibRaw.push(m[2].trim());BIB[m[1]]=bibRaw.length}});
+  return '\u0007BIB\u0007'});
+ t=esc(math(t));
+ t=t.replace(/\\(?:cite[a-z]*|parencite|textcite)\*?(?:\[[^\]]*\])*\{([^}]*)\}/g,(_,k)=>'['+k.split(',').map(x=>BIB[x.trim()]||x.trim()).join(', ')+']');
+ t=t.replace(/\\(eqref|(?:auto|c|C|v|name)?ref)\{([^}]*)\}/g,(_,n,k)=>'\u0002'+(n==='eqref'?'e':'r')+':'+k+'\u0002');
+ // sections
+ const hasCh=/\\chapter\b/.test(t),CH=hasCh?0:1,S=[0,0,0,0],TOC=[];
+ t=t.replace(new RegExp('\\\\(chapter|section|subsection|subsubsection)(\\*?)(?:\\[[^\\]]*\\])?\\{'+A+'\\}\\s*(?:\\\\label\\{([^}]*)\\})?','g'),(_,k,st,a,lb)=>{
+  const lv={chapter:0,section:1,subsection:2,subsubsection:3}[k];
+  if(!st){S[lv]++;for(let i=lv+1;i<4;i++)S[i]=0}
+  const num=st?'':S.slice(CH,lv+1).join('.');
+  if(lb)LAB[lb]=num;if(!st)TOC.push([lv,num,a]);
+  const h='h'+Math.min(lv+1,4);return '<'+h+'>'+(num?num+' ':'')+a+'</'+h+'>'});
+ // theorems
+ const tn=Object.keys(THM).join('|'),cnt={};
+ t=t.replace(new RegExp('\\\\begin\\{('+tn+')(\\*?)\\}(?:\\[([^\\]]*)\\])?\\s*(?:\\\\label\\{([^}]*)\\})?','g'),(_,n,st,o,lb)=>{
+  let num='';if(!st&&n!=='proof'){cnt[n]=(cnt[n]||0)+1;num=' '+cnt[n];if(lb)LAB[lb]=cnt[n]}
+  return '<div class="th"><b>'+THM[n]+num+(o?' ('+o+')':'')+'.</b> '});
+ t=t.replace(new RegExp('\\\\end\\{('+tn+')\\*?\\}','g'),(_,n)=>n==='proof'?'<span class="qed">\u220e</span></div>':'</div>');
+ // figures / tables
+ let TN=0,FN=0;
+ t=t.replace(/\\begin\{(table|figure)\*?\}(?:\[[^\]]*\])?([\s\S]*?)\\end\{\1\*?\}/g,(_,k,b)=>{
+  const n=k==='table'?++TN:++FN,nm=k==='table'?'Table':'Figure';let cap='';
+  b=b.replace(/\\label\{([^}]*)\}/g,(_,l)=>{LAB[l]=n;return ''});
+  b=b.replace(new RegExp('\\\\caption\\*?(?:\\[[^\\]]*\\])?\\{'+A+'\\}'),(_,c)=>{cap='<figcaption><b>'+nm+' '+n+':</b> '+c+'</figcaption>';return ''});
+  return '<figure>'+(k==='table'?cap+b:b+cap)+'</figure>'});
+ t=cmd(t,'footnote',(_,a)=>{FNT.push(a);return '<sup class="fn">'+FNT.length+'</sup>'});
+ t=inline(t);
+ // tabular
+ t=t.replace(/\\begin\{(tabular\*?|tabularx|longtable)\}(?:\[[a-z]\])?([\s\S]*?)\\end\{\1\}/g,(_,e,rest)=>{
+  let sp,b;if(e==='tabular*'||e==='tabularx'){rest=brace(rest)[1]}[sp,b]=brace(rest);
+  const cols=sp.replace(/[pmb]\{[^}]*\}/g,'l').replace(/[@!]\{[^}]*\}/g,'').replace(/[^lcrX]/g,'').replace(/X/g,'l');
+  const grid=/\|/.test(sp)||/\\hline/.test(b),bt=/\\(toprule|midrule|bottomrule)/.test(b);
+  b=b.replace(/\\(?:hline|toprule|midrule|bottomrule|endhead|endfirsthead|endfoot|endlastfoot)\b/g,'').replace(/\\cline\{[^}]*\}/g,'');
+  const rows=b.split(/\\\\(?:\[[^\]]*\])?/).map(r=>r.trim()).filter(Boolean),AL={l:'left',c:'center',r:'right'};
+  return stash('<div class="tw"><table class="tex'+(grid?' grid':'')+(bt?' bt':'')+'">'+rows.map((r,i)=>{let ci=0;
+   return '<tr>'+r.split(/(?<!\\)&amp;/).map(c=>{c=c.trim();let span=1,al=cols[ci]||'l';
+    const mc=c.match(/^\\multicolumn\{(\d+)\}\{([^}]*)\}\{([\s\S]*)\}$/);
+    if(mc){span=+mc[1];al=(mc[2].match(/[lcr]/)||[al])[0];c=mc[3].trim()}
+    c=c.replace(new RegExp('\\\\multirow\\{\\d+\\}\\{[^}]*\\}\\{'+A+'\\}'),(_,a)=>a);ci+=span;
+    const tg=(bt&&i===0)?'th':'td';
+    return '<'+tg+(span>1?' colspan="'+span+'"':'')+' style="text-align:'+AL[al]+'">'+c+'</'+tg+'>'}).join('')+'</tr>'}).join('')+'</table></div>',true)});
+ // lists & environments
+ t=t.replace(/\\begin\{(itemize|enumerate|description)\}(?:\[[^\]]*\])?/g,(_,e)=>e==='enumerate'?'<ol>':e==='itemize'?'<ul>':'<ul class="desc">')
+  .replace(/\\end\{(itemize|enumerate|description)\}/g,(_,e)=>e==='enumerate'?'</ol>':'</ul>')
+  .replace(/\\item\s*(?:\[([^\]]*)\])?/g,(_,l)=>'<li>'+(l?'<b>'+l+'</b> ':''))
+  .replace(/\\begin\{(?:quote|quotation)\}/g,'<blockquote>').replace(/\\end\{(?:quote|quotation)\}/g,'</blockquote>')
+  .replace(/\\begin\{center\}/g,'<div class="c">').replace(/\\begin\{flushright\}/g,'<div class="r">')
+  .replace(/\\end\{(?:center|flushright|abstract)\}/g,'</div>')
+  .replace(/\\begin\{abstract\}/g,'<div class="abs"><h4>Abstract</h4>')
+  .replace(/\\begin\{minipage\}(?:\[[^\]]*\])?\{[^}]*\}/g,'')
+  .replace(/\\(?:begin|end)\{[^}]*\}/g,'');
+ const tocHtml=TOC.length?'<nav class="toc"><b>Contents</b>'+TOC.map(([lv,n,a])=>'<div style="margin-left:'+Math.max(lv-1,0)*1.2+'em">'+n+' '+inline(a)+'</div>').join('')+'</nav>':'';
+ t=t.replace(/\\tableofcontents/g,()=>tocHtml?stash(tocHtml,true):'');
+ t=t.replace(/\\(usepackage|documentclass)(\[[^\]]*\])?/g,(_,k)=>'\\'+k);
+ t=t.replace(/\\(?:setlength|setcounter|addtocounter|numberwithin)\s*\{[^}]*\}\s*\{[^}]*\}/g,'');
+ t=cmd(t,'(?:bibliographystyle|bibliography|pagestyle|thispagestyle|geometry|hypersetup|graphicspath|pagenumbering|usepackage|documentclass|title|author|date|input|include)',()=>'');
+ t=t.replace(/\\(?:maketitle|noindent|newpage|clearpage|pagebreak|par|bigskip|medskip|smallskip|hfill|vfill|relax|appendix|frontmatter|mainmatter|backmatter|printbibliography|newline|linebreak|allowbreak|protect|qedhere|qed|centering)\b/g,'');
+ t=t.replace(/\\\\(?:\[[^\]]*\])?/g,'<br>').replace(/\\[a-zA-Z]+\*?/g,'').replace(/(?<!\\)[{}]/g,'')
+  .replace(/\\(%|&amp;|\$|_|#|\{|\})/g,(_,c)=>c);
+ t=t.replace(/\u0007BIB\u0007/,()=>bibRaw.length?stash('<h2>References</h2><ol class="bib">'+bibRaw.map(x=>'<li>'+inline(esc(x))+'</li>').join('')+'</ol>',true):'');
+ if(FNT.length)t+='\n\n'+stash('<hr><ol class="fns">'+FNT.map(f=>'<li>'+inline(f)+'</li>').join('')+'</ol>',true);
+ if(title){const fmt=s=>inline(esc(math(s.replace(/\\thanks\{[^}]*\}/g,'')))).replace(/\\and\b/g,' \u00b7 ').replace(/\\\\/g,'<br>');
+  t=stash('<div class="ttl"><h1>'+fmt(title)+'</h1>'+(author?'<div>'+fmt(author)+'</div>':'')+(date&&date.trim()?'<div>'+fmt(date)+'</div>':'')+'</div>',true)+'\n\n'+t}
+ // paragraphs
+ t=t.replace(/<(h[1-4]|figcaption)\b[^>]*>[\s\S]*?<\/\1>/g,m=>'\n\n'+m+'\n\n')
+  .replace(/<\/?(?:ul|ol|div|figure|blockquote|hr)\b[^>]*>/g,m=>'\n\n'+m+'\n\n')
+  .replace(/\u0004\d+\u0004/g,'\n\n$&\n\n');
+ const NW=/^(?:<\/?(?:h[1-4]|ul|ol|li|div|figure|figcaption|blockquote|hr)\b|\u0004)/;
+ return t.split(/\n\s*\n/).map(p=>{p=p.trim();return !p?'':NW.test(p)?p:'<p>'+p+'</p>'}).join('\n')}
+
+function md(src){
+ src=src.replace(/^---\n[\s\S]*?\n---\n/,'');const C=[];
+ src=src.replace(/```[\s\S]*?```|~~~[\s\S]*?~~~|`[^`\n]+`/g,m=>{C.push(m);return '\u0005'+(C.length-1)+'\u0005'});
+ src=math(src,true).replace(/\u0005(\d+)\u0005/g,(_,i)=>C[i]);
+ return marked.parse(src,{gfm:true})}
+function render(src,isMd){
+ M=[];LAB={};EQ=0;FNT=[];MAC=Object.assign({},BASE);
+ src=src.replace(/\r/g,'');
+ let h=isMd?md(src):latex(src);
+ for(let i=0;i<6;i++){const n=h.replace(RS,(_,k)=>M[k]||'');if(n===h)break;h=n}
+ h=h.replace(/\u0002([er]):([^\u0002]*)\u0002/g,(_,k,key)=>LAB[key]!=null?(k==='e'?'('+LAB[key]+')':LAB[key]):'?');
+ document.getElementById('c').innerHTML=h}
+function setup(theme,font,scale){
+ document.body.className=theme+' '+font;document.documentElement.className=theme;
+ document.documentElement.style.fontSize=(17*scale/100)+'px'}
+</script></body></html>
