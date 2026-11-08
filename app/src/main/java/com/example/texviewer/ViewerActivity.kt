@@ -1,5 +1,6 @@
 package com.example.texviewer
 
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
@@ -9,12 +10,16 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.print.PrintAttributes
+import android.print.PrintManager
 import android.provider.DocumentsContract
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.PixelCopy
 import android.view.View
 import android.widget.TextView
+import android.widget.Toast
+import android.webkit.JavascriptInterface
 import android.webkit.WebResourceRequest
 import android.webkit.WebResourceResponse
 import android.webkit.WebView
@@ -24,6 +29,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.ColorUtils
 import androidx.core.view.WindowCompat
 import androidx.documentfile.provider.DocumentFile
+import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButtonToggleGroup
@@ -39,6 +45,7 @@ class ViewerActivity : AppCompatActivity() {
     private lateinit var root: View
     private lateinit var progress: View
     private lateinit var toolbar: MaterialToolbar
+    private lateinit var appbar: AppBarLayout
     private lateinit var uri: Uri
     private lateinit var name: String
 
@@ -47,6 +54,8 @@ class ViewerActivity : AppCompatActivity() {
     private var pageReady = false
     private var destroyed = false
     private var scaleUpdate: Runnable? = null
+    private var toolbarHidden = false
+    private var appBarAnimating = false
 
     private val prefs by lazy { getSharedPreferences("p", 0) }
 
@@ -83,7 +92,13 @@ class ViewerActivity : AppCompatActivity() {
         root = findViewById(R.id.root)
         progress = findViewById(R.id.progress)
         toolbar = findViewById(R.id.toolbar)
+        appbar = findViewById(R.id.appbar)
         web = findViewById(R.id.web)
+        appbar.addOnOffsetChangedListener { _, offset ->
+            if (appBarAnimating && (offset == 0 || offset == -appbar.totalScrollRange)) {
+                appBarAnimating = false
+            }
+        }
 
         val incoming = intent?.data
             ?: intent?.getStringExtra("uri")?.let { runCatching { Uri.parse(it) }.getOrNull() }
@@ -98,9 +113,29 @@ class ViewerActivity : AppCompatActivity() {
         toolbar.setNavigationOnClickListener { finish() }
         toolbar.inflateMenu(R.menu.viewer)
         toolbar.setOnMenuItemClickListener {
-            if (it.itemId == R.id.display) showSettings()
+            when (it.itemId) {
+                R.id.display -> showSettings()
+                R.id.export_pdf -> exportPdf()
+                else -> return@setOnMenuItemClickListener false
+            }
             true
         }
+
+        // The WebView scrolls its content internally, so a native scroll listener
+        // never fires. The page reports scroll deltas through this bridge instead.
+        web.addJavascriptInterface(object {
+            @JavascriptInterface
+            fun onScroll(dy: Int, y: Int) {
+                runOnUiThread {
+                    if (destroyed || !pageReady || appBarAnimating) return@runOnUiThread
+                    when {
+                        y <= 0 -> showToolbar()
+                        dy > 12 -> hideToolbar()
+                        dy < -12 -> showToolbar()
+                    }
+                }
+            }
+        }, "ViewerHost")
 
         content = try {
             readText(uri)
@@ -410,12 +445,17 @@ class ViewerActivity : AppCompatActivity() {
     private fun applyChrome() {
         val (bg, fg) = palette[theme] ?: palette["light"]!!
         root.setBackgroundColor(bg)
+        appbar.setBackgroundColor(bg)
         toolbar.setBackgroundColor(bg)
         toolbar.setTitleTextColor(fg)
         toolbar.subtitle = null
         web.setBackgroundColor(bg)
         toolbar.navigationIcon?.mutate()?.setTint(fg)
+        toolbar.overflowIcon?.mutate()?.setTint(fg)
         toolbar.menu.findItem(R.id.display)?.icon?.mutate()?.setTint(fg)
+        // Keep the status bar opaque so a collapsing toolbar cannot show through it.
+        window.statusBarColor = bg
+        window.navigationBarColor = bg
         WindowCompat.getInsetsController(window, root).apply {
             val light = ColorUtils.calculateLuminance(bg) > 0.5
             isAppearanceLightStatusBars = light
@@ -436,6 +476,62 @@ class ViewerActivity : AppCompatActivity() {
     private fun updateScale() {
         if (!destroyed && ::web.isInitialized && pageReady) {
             web.evaluateJavascript("setScale($scale)", null)
+        }
+    }
+
+    private fun hideToolbar() {
+        if (toolbarHidden || !::appbar.isInitialized) return
+        toolbarHidden = true
+        appBarAnimating = true
+        appbar.setExpanded(false, true)
+        appbar.postDelayed({ appBarAnimating = false }, 400)
+    }
+
+    private fun showToolbar() {
+        if (!toolbarHidden || !::appbar.isInitialized) return
+        toolbarHidden = false
+        appBarAnimating = true
+        appbar.setExpanded(true, true)
+        appbar.postDelayed({ appBarAnimating = false }, 400)
+    }
+
+    private fun exportPdf(attempt: Int = 0) {
+        if (destroyed) return
+        if (!pageReady) {
+            Toast.makeText(this, "Please wait for the document to finish loading.", Toast.LENGTH_SHORT).show()
+            return
+        }
+        web.evaluateJavascript("document.querySelectorAll('.tikz-status').length") { result ->
+            val pending = result?.trim()?.toIntOrNull() ?: 0
+            if (pending > 0) {
+                if (attempt >= 20) {
+                    Toast.makeText(this, "Diagrams are still rendering. Try again in a moment.", Toast.LENGTH_LONG).show()
+                } else {
+                    if (attempt == 0) {
+                        Toast.makeText(this, "Preparing diagrams…", Toast.LENGTH_SHORT).show()
+                    }
+                    web.postDelayed({ exportPdf(attempt + 1) }, 750)
+                }
+            } else {
+                startPrint()
+            }
+        }
+    }
+
+    private fun startPrint() {
+        if (destroyed) return
+        try {
+            val printManager = getSystemService(Context.PRINT_SERVICE) as PrintManager
+            val jobName = name.substringBeforeLast('.').ifBlank { name }
+            val adapter = web.createPrintDocumentAdapter(jobName)
+            val attrs = PrintAttributes.Builder()
+                .setMediaSize(PrintAttributes.MediaSize.ISO_A4)
+                .setResolution(PrintAttributes.Resolution("pdf", "PDF", 600, 600))
+                .setMinMargins(PrintAttributes.Margins.NO_MARGINS)
+                .build()
+            printManager.print(jobName, adapter, attrs)
+        } catch (_: Exception) {
+            Toast.makeText(this, "Could not start PDF export.", Toast.LENGTH_SHORT).show()
         }
     }
 

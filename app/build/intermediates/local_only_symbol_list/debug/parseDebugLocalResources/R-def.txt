@@ -10,6 +10,7 @@ drawable ic_folder_open
 drawable ic_launcher_foreground
 drawable ic_search
 drawable ic_tune
+id appbar
 id b_sans
 id b_serif
 id badge
@@ -23,6 +24,7 @@ id display
 id empty
 id emptyText
 id emptyTitle
+id export_pdf
 id fabFile
 id fabFolder
 id fonts

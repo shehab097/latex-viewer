@@ -1,6 +1,6 @@
 # LaTeX Viewer
 
-A lightweight Android app for reading LaTeX (`.tex`) and Markdown (`.md`) documents on your phone or tablet. It renders documents locally with [KaTeX](https://katex.org/) and [marked](https://marked.js.org/) — no LaTeX installation, no network connection, and no PDF export required.
+A lightweight Android app for reading LaTeX (`.tex`) and Markdown (`.md`) documents on your phone or tablet. It renders documents locally with [KaTeX](https://katex.org/) and [marked](https://marked.js.org/) — no LaTeX installation and no network connection required.
 
 ## Features
 
@@ -22,6 +22,8 @@ A lightweight Android app for reading LaTeX (`.tex`) and Markdown (`.md`) docume
   - relative images from the document's folder
   - TikZ/PGF pictures rendered locally with a bundled WebAssembly TeX engine
 - **Display settings** — choose Light, Dark, Gray, Grayscale, or Night theme; serif or sans-serif text; and a text size from 60% to 250%. Settings are remembered between sessions. Images and diagrams are inverted in the Dark theme so they stay legible.
+- **Auto-hiding toolbar** — while reading, the top bar hides when you scroll down and returns when you scroll up or reach the top of the document.
+- **Export as PDF** — use the overflow menu to open Android's print dialog and choose **Save as PDF**. The export is rendered in a light, print-friendly theme and waits for TikZ diagrams to finish compiling.
 - **Material You** — dynamic colors are applied on Android 12+ when available.
 - **Offline** — KaTeX, its fonts, `marked`, and the TikZJax TeX engine are bundled in the APK; documents are read locally.
 
@@ -93,7 +95,7 @@ This is a **reader**, not a LaTeX compiler:
 - TikZ rendering uses the packages and libraries bundled with TikZJax; pictures that depend on external fonts, images, or unsupported libraries may fail and fall back to a placeholder.
 - TikZ rendering runs a WebAssembly TeX engine, so the first diagram in a document can take a few seconds to appear on slower devices.
 - `\includegraphics` falls back to a labeled placeholder when the image cannot be resolved.
-- There is no PDF output and no editing capability.
+- PDF export is handled by Android's print dialog; choose **Save as PDF** as the printer. There is no built-in editor.
 - Rendering fidelity depends on the bundled KaTeX/marked versions.
 
 ## Third-party components
