@@ -32,6 +32,7 @@ id progress
 id reset
 id root
 id search
+id sizeValue
 id slider
 id themes
 id title

@@ -9,16 +9,21 @@ import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.provider.DocumentsContract
 import android.provider.OpenableColumns
+import android.util.Log
 import android.view.PixelCopy
 import android.view.View
+import android.widget.TextView
 import android.webkit.WebResourceRequest
+import android.webkit.WebResourceResponse
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.ColorUtils
 import androidx.core.view.WindowCompat
+import androidx.documentfile.provider.DocumentFile
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButtonToggleGroup
@@ -26,6 +31,8 @@ import com.google.android.material.chip.ChipGroup
 import com.google.android.material.slider.Slider
 import org.json.JSONObject
 import java.io.File
+import java.io.FileInputStream
+import java.io.InputStream
 
 class ViewerActivity : AppCompatActivity() {
     private lateinit var web: WebView
@@ -117,8 +124,9 @@ class ViewerActivity : AppCompatActivity() {
             setSupportZoom(true)
             useWideViewPort = true
             loadWithOverviewMode = true
-            allowFileAccess = false
-            allowContentAccess = false
+            allowFileAccess = true
+            allowContentAccess = true
+            domStorageEnabled = true
         }
         web.webViewClient = object : WebViewClient() {
             override fun onPageFinished(view: WebView, url: String) {
@@ -140,6 +148,64 @@ class ViewerActivity : AppCompatActivity() {
                         null
                     )
                 }
+            }
+
+            override fun shouldInterceptRequest(view: WebView, request: WebResourceRequest): WebResourceResponse? {
+                val url = request.url
+                val scheme = url.scheme?.lowercase() ?: return super.shouldInterceptRequest(view, request)
+                val urlString = url.toString()
+
+                // TikZJax loads its WASM/TeX resources through fetch(); serve them
+                // from the bundled assets so diagram rendering works offline.
+                if (scheme == "https" && url.host == "tikzjax.local") {
+                    return serveTikzAsset(url)
+                }
+
+                if (scheme == "http" || scheme == "https" || scheme == "data") {
+                    return super.shouldInterceptRequest(view, request)
+                }
+
+                // Images referenced by an absolute content:// URI.
+                if (scheme == "content") {
+                    return try {
+                        contentResolver.openInputStream(url)?.let {
+                            WebResourceResponse(
+                                contentResolver.getType(url) ?: "application/octet-stream",
+                                null,
+                                it
+                            )
+                        }
+                    } catch (_: Exception) {
+                        null
+                    }
+                }
+
+                // Bundled assets (KaTeX, marked) are served by the WebView itself.
+                if (urlString.startsWith("file:///android_asset/")) {
+                    val assetPath = urlString.removePrefix("file:///android_asset/")
+                        .substringBefore('?').substringBefore('#')
+                    try {
+                        assets.open(assetPath).close()
+                        return super.shouldInterceptRequest(view, request)
+                    } catch (_: Exception) {
+                        // Not an asset: try resolving it next to the document instead.
+                    }
+                } else if (scheme == "file") {
+                    // An absolute file:// path can be loaded directly.
+                    return super.shouldInterceptRequest(view, request)
+                }
+
+                // Relative paths are resolved against file:///android_asset/, so strip that
+                // prefix and look for the file in the document's own folder.
+                val relativePath = url.path?.removePrefix("/android_asset/")?.removePrefix("/")
+                if (!relativePath.isNullOrEmpty()) {
+                    val stream = resolveDocumentImageStream(relativePath)
+                    if (stream != null) {
+                        return WebResourceResponse(mimeTypeOf(relativePath), null, stream)
+                    }
+                }
+
+                return super.shouldInterceptRequest(view, request)
             }
 
             override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
@@ -177,6 +243,162 @@ class ViewerActivity : AppCompatActivity() {
     private fun isMarkdown(n: String): Boolean {
         val e = n.substringAfterLast('.', "").lowercase()
         return e == "md" || e == "markdown" || e == "mdown" || e == "mkd"
+    }
+
+    /**
+     * Opens an image that is referenced relative to the currently viewed document.
+     * Works for both plain file:// documents and Storage Access Framework URIs
+     * (single documents and documents inside a tree).
+     */
+    private fun resolveDocumentImageStream(relativePath: String): InputStream? {
+        val rel = safeRelativePath(relativePath) ?: return null
+        return try {
+            when (uri.scheme?.lowercase()) {
+                "file" -> openFileRelative(rel)
+                "content" -> openContentRelative(rel)
+                else -> null
+            }
+        } catch (_: Exception) {
+            null
+        }
+    }
+
+    private fun safeRelativePath(path: String): String? {
+        val parts = path.replace('\\', '/')
+            .split('/')
+            .filter { it.isNotEmpty() && it != "." }
+        if (parts.isEmpty() || parts.any { it == ".." }) return null
+        return parts.joinToString("/")
+    }
+
+    private fun openFileRelative(rel: String): InputStream? {
+        val document = uri.path?.let { File(it) } ?: return null
+        val base = document.parentFile ?: return null
+        val target = File(base, rel)
+        val basePath = base.canonicalPath + File.separator
+        if (!target.canonicalPath.startsWith(basePath)) return null
+        return if (target.isFile) FileInputStream(target) else null
+    }
+
+    private fun openContentRelative(rel: String): InputStream? {
+        val authority = uri.authority ?: return null
+        val documentId = try {
+            DocumentsContract.getDocumentId(uri)
+        } catch (_: Exception) {
+            null
+        }
+
+        if (documentId != null) {
+            val parentId = parentDocumentId(documentId)
+            val targetId = when {
+                parentId.isEmpty() -> rel
+                parentId.endsWith(':') -> parentId + rel
+                else -> "$parentId/$rel"
+            }
+
+            // Preferred route: ask the DocumentsProvider for the sibling document.
+            if (DocumentsContract.isTreeUri(uri)) {
+                try {
+                    val sibling = DocumentsContract.buildDocumentUriUsingTree(uri, targetId)
+                    openStreamQuietly(sibling)?.let { return it }
+                } catch (_: Exception) {
+                }
+            }
+            try {
+                val sibling = DocumentsContract.buildDocumentUri(authority, targetId)
+                openStreamQuietly(sibling)?.let { return it }
+            } catch (_: Exception) {
+            }
+
+            // Fallback for providers whose document IDs are not path-like: walk the tree.
+            if (DocumentsContract.isTreeUri(uri)) {
+                try {
+                    val treeId = DocumentsContract.getTreeDocumentId(uri)
+                    if (documentId.startsWith(treeId)) {
+                        val relativeToRoot = documentId.removePrefix(treeId).trimStart('/')
+                        val parentPath = relativeToRoot.substringBeforeLast('/', "")
+                        val targetPath = listOf(parentPath, rel)
+                            .filter { it.isNotEmpty() }
+                            .joinToString("/")
+                        val root = DocumentFile.fromTreeUri(this, uri)
+                        findDocument(root, targetPath)?.let { found ->
+                            openStreamQuietly(found.uri)?.let { return it }
+                        }
+                    }
+                } catch (_: Exception) {
+                }
+            }
+        }
+
+        return null
+    }
+
+    private fun parentDocumentId(documentId: String): String {
+        val slash = documentId.lastIndexOf('/')
+        if (slash >= 0) return documentId.substring(0, slash)
+        val colon = documentId.lastIndexOf(':')
+        if (colon >= 0) return documentId.substring(0, colon + 1)
+        return ""
+    }
+
+    private fun findDocument(root: DocumentFile?, path: String): DocumentFile? {
+        var current = root ?: return null
+        for (segment in path.split('/')) {
+            if (segment.isEmpty()) continue
+            current = current.findFile(segment) ?: return null
+        }
+        return current
+    }
+
+    private fun openStreamQuietly(uri: Uri): InputStream? = try {
+        contentResolver.openInputStream(uri)
+    } catch (_: Exception) {
+        null
+    }
+
+    private fun mimeTypeOf(path: String): String =
+        when (path.substringAfterLast('.', "").lowercase()) {
+            "png" -> "image/png"
+            "jpg", "jpeg" -> "image/jpeg"
+            "gif" -> "image/gif"
+            "webp" -> "image/webp"
+            "bmp" -> "image/bmp"
+            "svg" -> "image/svg+xml"
+            "ico" -> "image/x-icon"
+            else -> "application/octet-stream"
+        }
+
+    /** Serves TikZJax's WASM, TeX and font resources from the APK assets. */
+    private fun serveTikzAsset(url: Uri): WebResourceResponse? {
+        val path = url.path?.removePrefix("/") ?: return null
+        if (path.isEmpty() || path.contains("..")) return null
+        // Android's asset merger decompresses files ending in .gz, so the
+        // pre-compressed TeX resources are stored with a .bin suffix.
+        val assetPath = when (path) {
+            "tex/core.dump.gz" -> "tikzjax/tex/core.dump.gz.bin"
+            "tex/tex.wasm.gz" -> "tikzjax/tex/tex.wasm.gz.bin"
+            "tex/tex_files.tar.gz" -> "tikzjax/tex/tex_files.tar.gz.bin"
+            else -> "tikzjax/$path"
+        }
+        return try {
+            val stream = assets.open(assetPath)
+            val mime = when {
+                path.endsWith(".gz") -> "application/gzip"
+                path.endsWith(".css") -> "text/css"
+                path.endsWith(".ttf") -> "font/ttf"
+                path.endsWith(".js") -> "application/javascript"
+                else -> "application/octet-stream"
+            }
+            WebResourceResponse(mime, null, stream).apply {
+                responseHeaders = mutableMapOf(
+                    "Access-Control-Allow-Origin" to "*",
+                    "Cache-Control" to "public, max-age=31536000"
+                )
+            }
+        } catch (e: Exception) {
+            Log.e("TikzAsset", "failed tikzjax/$path", e)
+            null
+        }
     }
 
     private fun applyChrome() {
@@ -229,17 +451,21 @@ class ViewerActivity : AppCompatActivity() {
                 }
             }
         }
+        val sizeValue = view.findViewById<TextView>(R.id.sizeValue)
         val slider = view.findViewById<Slider>(R.id.slider)
         slider.value = scale.toFloat().coerceIn(60f, 250f)
+        sizeValue.text = "${scale.coerceIn(60, 250)}%"
         slider.addOnChangeListener { _, value, fromUser ->
             if (fromUser) {
                 scale = value.toInt()
+                sizeValue.text = "$scale%"
                 update()
             }
         }
         view.findViewById<View>(R.id.reset).setOnClickListener {
             scale = 100
             slider.value = 100f
+            sizeValue.text = "100%"
             update()
         }
         dialog.show()

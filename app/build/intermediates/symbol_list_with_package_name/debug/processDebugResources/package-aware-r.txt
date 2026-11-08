@@ -3399,6 +3399,7 @@ id showCustom
 id showHome
 id showTitle
 id sin
+id sizeValue
 id skipCollapsed
 id slide
 id slider
