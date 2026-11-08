@@ -29,6 +29,11 @@ class DocAdapter(
         notifyDataSetChanged()
     }
 
+    /** Drops cached bitmaps so regenerated thumbnails are reloaded from disk. */
+    fun invalidateThumbs() {
+        cache.evictAll()
+    }
+
     class VH(v: View) : RecyclerView.ViewHolder(v) {
         val img: ImageView = v.findViewById(R.id.img)
         val tv: TextView = v.findViewById(R.id.title)

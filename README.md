@@ -20,9 +20,10 @@ A lightweight Android app for reading LaTeX (`.tex`) and Markdown (`.md`) docume
   - custom macros via `\newcommand`, `\renewcommand`, `\providecommand`, `\def`, `\DeclareMathOperator`
   - inline formatting, accents, common text symbols, verbatim/code blocks
   - relative images from the document's folder
-- **Display settings** — choose Light, Dark, Gray, Grayscale, or Night theme; serif or sans-serif text; and a text size from 60% to 250%. Settings are remembered between sessions.
+  - TikZ/PGF pictures rendered locally with a bundled WebAssembly TeX engine
+- **Display settings** — choose Light, Dark, Gray, Grayscale, or Night theme; serif or sans-serif text; and a text size from 60% to 250%. Settings are remembered between sessions. Images and diagrams are inverted in the Dark theme so they stay legible.
 - **Material You** — dynamic colors are applied on Android 12+ when available.
-- **Offline** — KaTeX, its fonts, and `marked` are bundled in the APK; documents are read locally.
+- **Offline** — KaTeX, its fonts, `marked`, and the TikZJax TeX engine are bundled in the APK; documents are read locally.
 
 ## Supported files
 
@@ -59,6 +60,7 @@ app/
 │   ├── assets/
 │   │   ├── viewer.html          # LaTeX/Markdown renderer (KaTeX + marked)
 │   │   ├── katex/               # bundled KaTeX JS, CSS and fonts
+│   │   ├── tikzjax/             # bundled TikZJax WASM engine, TeX files and fonts
 │   │   └── marked.min.js
 │   ├── java/com/example/texviewer/
 │   │   ├── App.kt               # Application, enables dynamic colors
@@ -78,15 +80,18 @@ app/
 3. The HTML page receives the document text and renders it:
    - LaTeX goes through a custom parser in `viewer.html` that handles environments, macros, references, and inline formatting, using KaTeX for math.
    - Markdown is rendered with `marked` after math expressions are extracted and rendered by KaTeX.
+   - TikZ blocks are compiled asynchronously by TikZJax and replaced with inline SVG.
 4. After rendering, `ViewerActivity` captures the WebView with `PixelCopy` (or a canvas fallback on older devices) and stores a small JPEG thumbnail for the recents grid.
 5. Images referenced with relative paths are resolved from the document's folder through `shouldInterceptRequest`. External `http`, `https`, `mailto`, and `tel` links open in the appropriate external app.
+6. TikZJax requests its WASM/TeX resources from a private `https://tikzjax.local` host; `shouldInterceptRequest` serves them from the APK assets with CORS headers so the engine works fully offline.
 
 ## Limitations
 
 This is a **reader**, not a LaTeX compiler:
 
 - It renders a supported subset of LaTeX, not arbitrary TeX. Complex packages, custom classes, and advanced typography may not display as expected.
-- TikZ/PGF pictures are shown as placeholders rather than rendered drawings.
+- TikZ rendering uses the packages and libraries bundled with TikZJax; pictures that depend on external fonts, images, or unsupported libraries may fail and fall back to a placeholder.
+- TikZ rendering runs a WebAssembly TeX engine, so the first diagram in a document can take a few seconds to appear on slower devices.
 - `\includegraphics` falls back to a labeled placeholder when the image cannot be resolved.
 - There is no PDF output and no editing capability.
 - Rendering fidelity depends on the bundled KaTeX/marked versions.
@@ -95,6 +100,8 @@ This is a **reader**, not a LaTeX compiler:
 
 - [KaTeX](https://katex.org/) — math typesetting (MIT License)
 - [marked](https://marked.js.org/) — Markdown parser (MIT License)
+- [TikZJax](https://github.com/kisonecat/tikzjax) / [isomorphic-tikzjax](https://github.com/prinsss/node-tikzjax) — TikZ-to-SVG WebAssembly engine (LaTeX Project Public License 1.3c)
+- BaKoMa Computer Modern fonts — bundled with TikZJax (see `assets/tikzjax/bakoma/LICENCE`)
 - [AndroidX](https://developer.android.com/jetpack/androidx) and [Material Components for Android](https://github.com/material-components/material-components-android) — UI libraries
 
 See the respective projects for their license texts.

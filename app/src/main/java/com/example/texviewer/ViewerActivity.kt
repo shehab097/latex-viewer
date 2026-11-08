@@ -46,6 +46,7 @@ class ViewerActivity : AppCompatActivity() {
     private var loadError: String? = null
     private var pageReady = false
     private var destroyed = false
+    private var scaleUpdate: Runnable? = null
 
     private val prefs by lazy { getSharedPreferences("p", 0) }
 
@@ -141,7 +142,12 @@ class ViewerActivity : AppCompatActivity() {
                     view.evaluateJavascript(
                         "render(${JSONObject.quote(body)},${isMarkdown(name)})", null
                     )
-                    view.postDelayed({ saveThumb() }, 1200)
+                    // TikZ pictures are compiled asynchronously; give the engine
+                    // enough time to finish before capturing the recents thumbnail.
+                    val hasTikz = body.contains("\\begin{tikzpicture}") ||
+                        body.contains("\\begin{pgfpicture}") ||
+                        body.contains("\\begin{circuitikz}")
+                    view.postDelayed({ saveThumb() }, if (hasTikz) 6000L else 1200L)
                 } else {
                     view.evaluateJavascript(
                         "showError(${JSONObject.quote("The file could not be read.")},${JSONObject.quote(loadError ?: "")})",
@@ -426,6 +432,13 @@ class ViewerActivity : AppCompatActivity() {
         applyChrome()
     }
 
+    /** Text-size changes only need a font-size update, not a full page re-theme. */
+    private fun updateScale() {
+        if (!destroyed && ::web.isInitialized && pageReady) {
+            web.evaluateJavascript("setScale($scale)", null)
+        }
+    }
+
     private fun showSettings() {
         val dialog = BottomSheetDialog(this)
         val view = layoutInflater.inflate(R.layout.sheet_display, null)
@@ -459,14 +472,18 @@ class ViewerActivity : AppCompatActivity() {
             if (fromUser) {
                 scale = value.toInt()
                 sizeValue.text = "$scale%"
-                update()
+                // Coalesce rapid slider movements into one update per frame.
+                scaleUpdate?.let { web.removeCallbacks(it) }
+                val r = Runnable { updateScale() }
+                scaleUpdate = r
+                web.postOnAnimation(r)
             }
         }
         view.findViewById<View>(R.id.reset).setOnClickListener {
             scale = 100
             slider.value = 100f
             sizeValue.text = "100%"
-            update()
+            updateScale()
         }
         dialog.show()
     }

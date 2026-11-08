@@ -44,6 +44,7 @@ table.tex.grid td,table.tex.grid th{border:1px solid var(--fg)}
 table.tex.bt{border-top:2px solid var(--fg);border-bottom:2px solid var(--fg)}
 table.tex.bt tr:first-child th{border-bottom:1px solid var(--fg)}
 img{max-width:100%}blockquote{margin-left:0;padding-left:1em;border-left:3px solid var(--mu)}
+html.dark img,html.dark .tikz svg{filter:invert(1) hue-rotate(180deg)}
 .katex-display{overflow-x:auto;overflow-y:hidden}
 
 a{color:var(--link);text-decoration:none}a:hover{text-decoration:underline}
@@ -344,6 +345,12 @@ function showError(message,detail){
  const d=detail?'<pre>'+esc(detail)+'</pre>':'';
  document.getElementById('c').innerHTML='<div class="err"><div class="ico">\u26A0</div><h2>Cannot open this document</h2><p>'+esc(message||'')+'</p>'+d+'</div>';
  window.scrollTo(0,0);
+}
+let SCALE_TIMER=0;
+function setScale(scale){
+ document.documentElement.style.fontSize=(17*(scale||100)/100)+'px';
+ clearTimeout(SCALE_TIMER);
+ SCALE_TIMER=setTimeout(fitMath,150);
 }
 function setup(theme,font,scale){
  document.documentElement.className=theme||'light';
