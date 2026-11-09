@@ -3,6 +3,7 @@ local
 color ic_launcher_background
 dimen card_margin
 dimen card_min_width
+dimen card_min_width_tablet
 dimen card_title_horizontal_padding
 dimen card_title_text_size
 dimen card_title_vertical_padding
@@ -15,6 +16,7 @@ drawable ic_arrow_back
 drawable ic_file
 drawable ic_folder
 drawable ic_folder_open
+drawable ic_fullscreen
 drawable ic_launcher_foreground
 drawable ic_search
 drawable ic_tune
@@ -35,6 +37,7 @@ id export_pdf
 id fabFile
 id fabFolder
 id fonts
+id full_screen
 id img
 id list
 id progress

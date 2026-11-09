@@ -1,17 +1,17 @@
 -- Merging decision tree log ---
 provider#androidx.core.content.FileProvider
-INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:62:9-70:20
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:68:9-76:20
 	android:grantUriPermissions
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:66:13-47
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:72:13-47
 	android:authorities
 		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:64:13-64
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:70:13-64
 	android:exported
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:65:13-37
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:71:13-37
 	android:name
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:63:13-62
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:69:13-62
 provider#androidx.startup.InitializationProvider
-INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:72:9-80:20
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:78:9-86:20
 MERGED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
 MERGED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
 MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
@@ -21,26 +21,26 @@ MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gra
 MERGED from [androidx.startup:startup-runtime:1.1.1] /home/shehab/.gradle/caches/transforms-4/705c330e03d4e2fcb62a924d14782115/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
 MERGED from [androidx.startup:startup-runtime:1.1.1] /home/shehab/.gradle/caches/transforms-4/705c330e03d4e2fcb62a924d14782115/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
 	tools:node
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:76:13-31
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:82:13-31
 	android:authorities
 		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:74:13-68
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:80:13-68
 	android:exported
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:75:13-37
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:81:13-37
 	android:name
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:73:13-67
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:79:13-67
 meta-data#com.example.texviewer.SplitInitializer
-INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:77:13-79:52
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:83:13-85:52
 	android:value
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:79:17-49
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:85:17-49
 	android:name
 		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:78:17-65
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:84:17-65
 manifest
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-83:12
-INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-83:12
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-89:12
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-89:12
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-89:12
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-89:12
 MERGED from [com.google.android.material:material:1.12.0] /home/shehab/.gradle/caches/transforms-4/30dbe09adc47a6fa3161e128d9fbb6b2/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /home/shehab/.gradle/caches/transforms-4/e97b8fec522e0237fe171c43b96f412b/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/shehab/.gradle/caches/transforms-4/3284b1fe802a3f384d6e1862779d2989/transformed/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
@@ -104,8 +104,8 @@ ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:5
 	android:name
 		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:7:5-82:19
-INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:7:5-82:19
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:7:5-88:19
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:7:5-88:19
 MERGED from [com.google.android.material:material:1.12.0] /home/shehab/.gradle/caches/transforms-4/30dbe09adc47a6fa3161e128d9fbb6b2/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] /home/shehab/.gradle/caches/transforms-4/30dbe09adc47a6fa3161e128d9fbb6b2/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/shehab/.gradle/caches/transforms-4/3284b1fe802a3f384d6e1862779d2989/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
@@ -196,12 +196,22 @@ ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:5
 		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:60:13-106
 	android:name
 		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:57:13-43
-meta-data#android.support.FILE_PROVIDER_PATHS
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:67:13-69:54
-	android:resource
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:69:17-51
+activity#com.example.texviewer.FullScreenViewerActivity
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:62:9-66:109
+	android:parentActivityName
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:65:13-55
+	android:exported
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:64:13-37
+	android:configChanges
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:66:13-106
 	android:name
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:68:17-67
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:63:13-53
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:73:13-75:54
+	android:resource
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:75:17-51
+	android:name
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:74:17-67
 uses-sdk
 INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml

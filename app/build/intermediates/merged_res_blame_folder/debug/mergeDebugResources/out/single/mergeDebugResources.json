@@ -4,16 +4,20 @@
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/xml/file_paths.xml"
     },
     {
-        "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/drawable/ic_launcher_foreground.xml"
-    },
-    {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/mipmap-anydpi_ic_launcher.xml.flat",
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/mipmap-anydpi/ic_launcher.xml"
     },
     {
+        "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/drawable/ic_launcher_foreground.xml"
+    },
+    {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_tune.xml.flat",
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/drawable/ic_tune.xml"
+    },
+    {
+        "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_fullscreen.xml.flat",
+        "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/drawable/ic_fullscreen.xml"
     },
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_arrow_back.xml.flat",
@@ -26,10 +30,6 @@
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_folder_open.xml.flat",
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/drawable/ic_folder_open.xml"
-    },
-    {
-        "merged": "com.example.texviewer.app-debug-38:/layout_activity_main.xml.flat",
-        "source": "com.example.texviewer.app-main-40:/layout/activity_main.xml"
     },
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/xml_main_split_config.xml.flat",
@@ -58,10 +58,6 @@
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/mipmap-anydpi-v26_ic_launcher.xml.flat",
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/mipmap-anydpi-v26/ic_launcher.xml"
-    },
-    {
-        "merged": "com.example.texviewer.app-debug-38:/menu_main.xml.flat",
-        "source": "com.example.texviewer.app-main-40:/menu/main.xml"
     },
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/layout_sheet_display.xml.flat",

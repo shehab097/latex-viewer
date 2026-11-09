@@ -34,21 +34,31 @@ class MainActivity : AppCompatActivity() {
     private lateinit var toolbar: MaterialToolbar
     private val prefs by lazy { getSharedPreferences("p", 0) }
     private var splitEnabled = false
-    private val isLargeScreen: Boolean
+    private val deviceSize: Pair<Int, Int>
         get() {
             val wm = getSystemService(WINDOW_SERVICE) as WindowManager
-            val widthPx = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                wm.maximumWindowMetrics.bounds.width()
+            return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                val bounds = wm.maximumWindowMetrics.bounds
+                bounds.width() to bounds.height()
             } else {
                 val dm = DisplayMetrics()
                 @Suppress("DEPRECATION")
                 wm.defaultDisplay.getRealMetrics(dm)
-                dm.widthPixels
+                dm.widthPixels to dm.heightPixels
             }
-            return widthPx / resources.displayMetrics.density >= 600f
+        }
+    private val isLargeScreen: Boolean
+        get() {
+            val (w, h) = deviceSize
+            return minOf(w, h) / resources.displayMetrics.density >= 600f
+        }
+    private val isLandscape: Boolean
+        get() {
+            val (w, h) = deviceSize
+            return w > h
         }
     private val canSplit: Boolean
-        get() = isLargeScreen && runCatching {
+        get() = isLargeScreen && isLandscape && runCatching {
             SplitController.getInstance(this).splitSupportStatus ==
                 SplitController.SplitSupportStatus.SPLIT_AVAILABLE
         }.getOrDefault(false)
@@ -140,17 +150,14 @@ class MainActivity : AppCompatActivity() {
             },
             onLong = { d -> if (d.dir == null) showDocumentActions(d) }
         )
-        // Keep cards comfortably sized on phones and use the extra room on
-        // tablets, foldables, and desktop windows without an endless grid.
         val density = resources.displayMetrics.density
-        // Use the activity window width, not the physical display width: in an
-        // embedded split the library only occupies its own pane.
         val windowWidthPx = (resources.configuration.screenWidthDp * density).toInt()
         val maxGridWidth = (1400 * density).toInt()
-        val effectiveWidth = minOf(windowWidthPx, maxGridWidth)
-        val cardMin = resources.getDimensionPixelSize(R.dimen.card_min_width)
-        val cols = (effectiveWidth / cardMin).toInt()
-            .coerceIn(2, resources.getInteger(R.integer.library_max_columns))
+        val cols = when {
+            isLargeScreen && isLandscape -> 5
+            isLargeScreen -> 3
+            else -> 2
+        }
         findViewById<RecyclerView>(R.id.list).apply {
             if (windowWidthPx > maxGridWidth) {
                 (layoutParams as androidx.coordinatorlayout.widget.CoordinatorLayout.LayoutParams).apply {

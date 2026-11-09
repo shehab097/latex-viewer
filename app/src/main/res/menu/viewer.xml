@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/display" android:title="Display" android:icon="@drawable/ic_tune" app:showAsAction="always"/>
+    <item android:id="@+id/full_screen" android:title="Open in full screen" android:icon="@drawable/ic_fullscreen" app:showAsAction="always"/>
     <item android:id="@+id/export_pdf" android:title="Export as PDF" app:showAsAction="never"/>
     <item android:id="@+id/share" android:title="Share" app:showAsAction="never"/>
     <item android:id="@+id/rename" android:title="Rename" app:showAsAction="never"/>

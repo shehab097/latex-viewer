@@ -79,6 +79,11 @@
             android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden"
             android:exported="false"
             android:parentActivityName="com.example.texviewer.MainActivity" />
+        <activity
+            android:name="com.example.texviewer.FullScreenViewerActivity"
+            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden"
+            android:exported="false"
+            android:parentActivityName="com.example.texviewer.MainActivity" />
 
         <provider
             android:name="androidx.core.content.FileProvider"

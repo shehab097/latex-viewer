@@ -15,9 +15,11 @@ import android.print.PrintAttributes
 import android.print.PrintManager
 import android.provider.DocumentsContract
 import android.provider.OpenableColumns
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.PixelCopy
 import android.view.View
+import android.view.WindowManager
 import android.widget.TextView
 import android.widget.Toast
 import android.webkit.JavascriptInterface
@@ -43,7 +45,7 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.InputStream
 
-class ViewerActivity : AppCompatActivity() {
+open class ViewerActivity : AppCompatActivity() {
     private lateinit var web: WebView
     private lateinit var root: View
     private lateinit var progress: View
@@ -61,6 +63,8 @@ class ViewerActivity : AppCompatActivity() {
     private var appBarAnimating = false
     private var autoExportPdf = false
     private var autoExportStarted = false
+    private var lastScrollY = 0
+    private var pendingScrollY = 0
 
     private val prefs by lazy { getSharedPreferences("p", 0) }
 
@@ -114,6 +118,7 @@ class ViewerActivity : AppCompatActivity() {
         uri = incoming
         name = intent?.getStringExtra("name") ?: displayName(uri) ?: uri.lastPathSegment ?: "Document"
         autoExportPdf = intent?.getBooleanExtra("exportPdf", false) == true
+        pendingScrollY = intent?.getIntExtra("scroll_y", 0) ?: 0
 
         toolbar.title = name
         toolbar.setNavigationOnClickListener { finish() }
@@ -121,6 +126,7 @@ class ViewerActivity : AppCompatActivity() {
         toolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.display -> showSettings()
+                R.id.full_screen -> openFullScreen()
                 R.id.export_pdf -> exportPdf()
                 R.id.share -> shareDocument()
                 R.id.rename -> renameDocument()
@@ -135,6 +141,7 @@ class ViewerActivity : AppCompatActivity() {
             @JavascriptInterface
             fun onScroll(dy: Int, y: Int) {
                 runOnUiThread {
+                    lastScrollY = y
                     if (destroyed || !pageReady || appBarAnimating) return@runOnUiThread
                     when {
                         y <= 0 -> showToolbar()
@@ -185,6 +192,17 @@ class ViewerActivity : AppCompatActivity() {
                     view.evaluateJavascript(
                         "render(${JSONObject.quote(body)},${isMarkdown(name)})", null
                     )
+                    // Preserve the reading position when expanding a split
+                    // document into a full-screen viewer.
+                    val restore = pendingScrollY
+                    if (restore > 0) {
+                        pendingScrollY = 0
+                        view.postDelayed({
+                            if (!destroyed) {
+                                view.evaluateJavascript("window.scrollTo(0, $restore)", null)
+                            }
+                        }, 600L)
+                    }
                     // TikZ pictures are compiled asynchronously; give the engine
                     // enough time to finish before capturing the recents thumbnail.
                     val hasTikz = body.contains("\\begin{tikzpicture}") ||
@@ -454,21 +472,40 @@ class ViewerActivity : AppCompatActivity() {
         }
     }
 
+    private val deviceLandscape: Boolean
+        get() {
+            val wm = getSystemService(WINDOW_SERVICE) as WindowManager
+            val (w, h) = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                val bounds = wm.maximumWindowMetrics.bounds
+                bounds.width() to bounds.height()
+            } else {
+                val dm = DisplayMetrics()
+                @Suppress("DEPRECATION")
+                wm.defaultDisplay.getRealMetrics(dm)
+                dm.widthPixels to dm.heightPixels
+            }
+            return w > h
+        }
+
     private fun applyChrome() {
         val (bg, fg) = palette[theme] ?: palette["light"]!!
         val embedded = runCatching {
             ActivityEmbeddingController.getInstance(this).isActivityEmbedded(this)
         }.getOrDefault(false)
+        // Splits are only shown on tablets in landscape. In portrait the viewer
+        // is expanded, so it should use the document theme like a full-screen view.
+        // The dedicated full-screen activity also always uses the document theme.
+        val splitChrome = embedded && deviceLandscape && this !is FullScreenViewerActivity
 
-        // In a split the library and viewer share one window, so use the app
-        // surface for the toolbar and status bar instead of the document theme.
-        // The page itself keeps the chosen reading theme.
-        val chromeColor = if (embedded) {
+        // In a side-by-side split the library and viewer share one window, so
+        // use the app surface for the toolbar and status bar instead of the
+        // document theme. The page itself keeps the chosen reading theme.
+        val chromeColor = if (splitChrome) {
             MaterialColors.getColor(root, com.google.android.material.R.attr.colorSurface)
         } else {
             bg
         }
-        val chromeFg = if (embedded) {
+        val chromeFg = if (splitChrome) {
             MaterialColors.getColor(root, com.google.android.material.R.attr.colorOnSurface)
         } else {
             fg
@@ -482,6 +519,10 @@ class ViewerActivity : AppCompatActivity() {
         toolbar.navigationIcon?.mutate()?.setTint(chromeFg)
         toolbar.overflowIcon?.mutate()?.setTint(chromeFg)
         toolbar.menu.findItem(R.id.display)?.icon?.mutate()?.setTint(chromeFg)
+        toolbar.menu.findItem(R.id.full_screen)?.apply {
+            isVisible = splitChrome
+            icon?.mutate()?.setTint(chromeFg)
+        }
 
         // Keep the status bar opaque so a collapsing toolbar cannot show through it.
         window.statusBarColor = chromeColor
@@ -577,6 +618,18 @@ class ViewerActivity : AppCompatActivity() {
         } catch (_: Exception) {
             Toast.makeText(this, "Could not start PDF export.", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun openFullScreen() {
+        val intent = Intent(this, FullScreenViewerActivity::class.java).apply {
+            data = uri
+            putExtra("name", name)
+            putExtra("scroll_y", lastScrollY)
+            // A separate task is the reliable way to leave the library/viewer
+            // split pair behind: activity embedding only applies within a task.
+            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+        }
+        startActivity(intent)
     }
 
     private fun showSettings() {

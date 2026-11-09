@@ -2120,6 +2120,7 @@ dimen abc_text_size_title_material_toolbar
 dimen appcompat_dialog_background_inset
 dimen card_margin
 dimen card_min_width
+dimen card_min_width_tablet
 dimen card_title_horizontal_padding
 dimen card_title_text_size
 dimen card_title_vertical_padding
@@ -2956,6 +2957,7 @@ drawable ic_clock_black_24dp
 drawable ic_file
 drawable ic_folder
 drawable ic_folder_open
+drawable ic_fullscreen
 drawable ic_keyboard_black_24dp
 drawable ic_launcher_foreground
 drawable ic_m3_chip_check
@@ -3241,6 +3243,7 @@ id floating
 id fonts
 id forever
 id fragment_container_view_tag
+id full_screen
 id fullscreen_header
 id ghost_view
 id ghost_view_holder
