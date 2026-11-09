@@ -1,6 +1,14 @@
 R_DEF: Internal format may change without notice
 local
 color ic_launcher_background
+dimen card_margin
+dimen card_min_width
+dimen card_title_horizontal_padding
+dimen card_title_text_size
+dimen card_title_vertical_padding
+dimen library_padding
+dimen library_padding_bottom
+dimen thumb_height
 drawable bg_badge
 drawable ic_add
 drawable ic_arrow_back
@@ -19,7 +27,6 @@ id c_gray
 id c_grayscale
 id c_light
 id c_night
-id collapsing
 id display
 id empty
 id emptyText
@@ -31,15 +38,19 @@ id fonts
 id img
 id list
 id progress
+id rename
 id reset
 id root
 id search
+id share
 id sizeValue
 id slider
+id split_view
 id themes
 id title
 id toolbar
 id web
+integer library_max_columns
 layout activity_main
 layout activity_viewer
 layout item_doc
@@ -49,3 +60,5 @@ menu viewer
 mipmap ic_launcher
 mipmap ic_launcher_round
 style Theme.App
+xml file_paths
+xml main_split_config

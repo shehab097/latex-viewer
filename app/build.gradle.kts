@@ -13,4 +13,6 @@ dependencies {
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("androidx.documentfile:documentfile:1.0.1")
     implementation("androidx.activity:activity-ktx:1.9.1")
+    implementation("androidx.window:window:1.3.0")
+    implementation("androidx.startup:startup-runtime:1.1.1")
 }

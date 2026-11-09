@@ -62,6 +62,13 @@ img{max-width:100%;height:auto;border-radius:10px;display:block;margin:1em auto}
 .err pre{text-align:left;font-size:.78rem;max-height:12em;overflow:auto}
 details.tikz{margin:1em 0}
 @media (max-width:420px){body{padding:14px 14px 48px}.ttl{margin:.5em 0 1.5em}}
+@media (min-width:900px){body{padding:40px 36px 72px}#c{max-width:52rem}}
+@media (min-width:1400px){#c{max-width:58rem}}
+@page{
+ size:A4;
+ margin:16mm 14mm 18mm;
+ @bottom-center{content:counter(page) " / " counter(pages);font-size:9pt;color:#666;font-family:sans-serif}
+}
 @media print{
  html,html.dark,html.gray,html.grayscale,html.night{--bg:#fff;--fg:#000;--mu:rgba(0,0,0,.35);--link:#000;background:#fff!important;color:#000!important;filter:none!important;color-scheme:light!important}
  body{background:#fff!important;color:#000!important;padding:0!important}

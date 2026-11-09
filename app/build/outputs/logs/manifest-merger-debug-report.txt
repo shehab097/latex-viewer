@@ -1,9 +1,46 @@
 -- Merging decision tree log ---
+provider#androidx.core.content.FileProvider
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:62:9-70:20
+	android:grantUriPermissions
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:66:13-47
+	android:authorities
+		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:64:13-64
+	android:exported
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:65:13-37
+	android:name
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:63:13-62
+provider#androidx.startup.InitializationProvider
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:72:9-80:20
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/shehab/.gradle/caches/transforms-4/705c330e03d4e2fcb62a924d14782115/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+MERGED from [androidx.startup:startup-runtime:1.1.1] /home/shehab/.gradle/caches/transforms-4/705c330e03d4e2fcb62a924d14782115/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
+	tools:node
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:76:13-31
+	android:authorities
+		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:74:13-68
+	android:exported
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:75:13-37
+	android:name
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:73:13-67
+meta-data#com.example.texviewer.SplitInitializer
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:77:13-79:52
+	android:value
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:79:17-49
+	android:name
+		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:78:17-65
 manifest
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-56:12
-INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-56:12
-INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-56:12
-INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-56:12
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-83:12
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:1-83:12
 MERGED from [com.google.android.material:material:1.12.0] /home/shehab/.gradle/caches/transforms-4/30dbe09adc47a6fa3161e128d9fbb6b2/transformed/material-1.12.0/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.appcompat:appcompat-resources:1.7.0] /home/shehab/.gradle/caches/transforms-4/e97b8fec522e0237fe171c43b96f412b/transformed/appcompat-resources-1.7.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/shehab/.gradle/caches/transforms-4/3284b1fe802a3f384d6e1862779d2989/transformed/constraintlayout-2.0.1/AndroidManifest.xml:2:1-11:12
@@ -13,6 +50,7 @@ MERGED from [androidx.viewpager2:viewpager2:1.1.0-beta02] /home/shehab/.gradle/c
 MERGED from [androidx.fragment:fragment:1.5.4] /home/shehab/.gradle/caches/transforms-4/3d9efbf281507841f2c86d9fd1c4139f/transformed/fragment-1.5.4/AndroidManifest.xml:17:1-24:12
 MERGED from [androidx.activity:activity:1.9.1] /home/shehab/.gradle/caches/transforms-4/d4eae6239ae40a774437e66bb01639a2/transformed/activity-1.9.1/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.activity:activity-ktx:1.9.1] /home/shehab/.gradle/caches/transforms-4/7bf5c3d7cb39f3232f11f4f775b33adb/transformed/activity-ktx-1.9.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:17:1-31:12
 MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/shehab/.gradle/caches/transforms-4/dc9369d3a3308050fc6782cf03ea6014/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:17:1-35:12
 MERGED from [androidx.drawerlayout:drawerlayout:1.1.1] /home/shehab/.gradle/caches/transforms-4/25d7a0acfcd36a88cec5870374c1add7/transformed/drawerlayout-1.1.1/AndroidManifest.xml:17:1-24:12
@@ -38,15 +76,16 @@ MERGED from [androidx.lifecycle:lifecycle-livedata-core:2.6.2] /home/shehab/.gra
 MERGED from [androidx.lifecycle:lifecycle-runtime:2.6.2] /home/shehab/.gradle/caches/transforms-4/f0d9cfbdb784c10d6a0f1a5315cd19fe/transformed/lifecycle-runtime-2.6.2/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /home/shehab/.gradle/caches/transforms-4/075303c1a579c423313bb64f570c90a9/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.core:core-ktx:1.13.1] /home/shehab/.gradle/caches/transforms-4/ee0481a11330c26fe06a00831ef0481b/transformed/core-ktx-1.13.1/AndroidManifest.xml:2:1-7:12
+MERGED from [androidx.window.extensions.core:core:1.0.0] /home/shehab/.gradle/caches/transforms-4/cf26b24dbfbca8968e15f10992019ca6/transformed/core-1.0.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] /home/shehab/.gradle/caches/transforms-4/b602daaf2448be52ca00da64464dbe99/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:2:1-7:12
 MERGED from [androidx.documentfile:documentfile:1.0.1] /home/shehab/.gradle/caches/transforms-4/4231e0f5e7e82781e70369ed8bbbd417/transformed/documentfile-1.0.1/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/shehab/.gradle/caches/transforms-4/c829f663b97a5e70a3d902a476572ec8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:17:1-55:12
-MERGED from [androidx.cardview:cardview:1.0.0] /home/shehab/.gradle/caches/transforms-4/0caa330c8a83ae3d8aab7b79813c903a/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/shehab/.gradle/caches/transforms-4/0f311b49bca424a420b7c2ea65cfd17b/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/shehab/.gradle/caches/transforms-4/e76f1b767bbdaf61093fe6fdbd88b122/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.startup:startup-runtime:1.1.1] /home/shehab/.gradle/caches/transforms-4/705c330e03d4e2fcb62a924d14782115/transformed/startup-runtime-1.1.1/AndroidManifest.xml:17:1-33:12
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/shehab/.gradle/caches/transforms-4/c829f663b97a5e70a3d902a476572ec8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.cardview:cardview:1.0.0] /home/shehab/.gradle/caches/transforms-4/0caa330c8a83ae3d8aab7b79813c903a/transformed/cardview-1.0.0/AndroidManifest.xml:17:1-22:12
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/shehab/.gradle/caches/transforms-4/e76f1b767bbdaf61093fe6fdbd88b122/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:17:1-27:12
 MERGED from [androidx.tracing:tracing:1.0.0] /home/shehab/.gradle/caches/transforms-4/3cd12336f22dc1b12fb756d64dc91d51/transformed/tracing-1.0.0/AndroidManifest.xml:17:1-24:12
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/shehab/.gradle/caches/transforms-4/0f311b49bca424a420b7c2ea65cfd17b/transformed/interpolator-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/shehab/.gradle/caches/transforms-4/35b3db2516afa50d8f7eeea7a2525269/transformed/core-runtime-2.2.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/shehab/.gradle/caches/transforms-4/e1270e825345b4a55e6210845cc44caf/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:17:1-22:12
 MERGED from [androidx.print:print:1.0.0] /home/shehab/.gradle/caches/transforms-4/ffc1bb41ed0ccd9337c57458e0cedafc/transformed/print-1.0.0/AndroidManifest.xml:17:1-22:12
@@ -54,21 +93,25 @@ MERGED from [androidx.print:print:1.0.0] /home/shehab/.gradle/caches/transforms-
 		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
 	android:versionName
 		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
+	xmlns:tools
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
 	xmlns:android
 		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:2:11-69
 uses-permission#android.permission.INTERNET
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:4:5-67
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:5:5-67
 	android:name
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:4:22-64
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:5:22-64
 application
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:6:5-55:19
-INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:6:5-55:19
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:7:5-82:19
+INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:7:5-82:19
 MERGED from [com.google.android.material:material:1.12.0] /home/shehab/.gradle/caches/transforms-4/30dbe09adc47a6fa3161e128d9fbb6b2/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [com.google.android.material:material:1.12.0] /home/shehab/.gradle/caches/transforms-4/30dbe09adc47a6fa3161e128d9fbb6b2/transformed/material-1.12.0/AndroidManifest.xml:22:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/shehab/.gradle/caches/transforms-4/3284b1fe802a3f384d6e1862779d2989/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
 MERGED from [androidx.constraintlayout:constraintlayout:2.0.1] /home/shehab/.gradle/caches/transforms-4/3284b1fe802a3f384d6e1862779d2989/transformed/constraintlayout-2.0.1/AndroidManifest.xml:9:5-20
+MERGED from [androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:22:5-29:19
+MERGED from [androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:22:5-29:19
 MERGED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.core:core:1.13.1] /home/shehab/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:28:5-89
@@ -77,76 +120,88 @@ MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/ca
 MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:23:5-33:19
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:23:5-53:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/shehab/.gradle/caches/transforms-4/e76f1b767bbdaf61093fe6fdbd88b122/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/shehab/.gradle/caches/transforms-4/e76f1b767bbdaf61093fe6fdbd88b122/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] /home/shehab/.gradle/caches/transforms-4/705c330e03d4e2fcb62a924d14782115/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
 MERGED from [androidx.startup:startup-runtime:1.1.1] /home/shehab/.gradle/caches/transforms-4/705c330e03d4e2fcb62a924d14782115/transformed/startup-runtime-1.1.1/AndroidManifest.xml:25:5-31:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/shehab/.gradle/caches/transforms-4/e76f1b767bbdaf61093fe6fdbd88b122/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/shehab/.gradle/caches/transforms-4/e76f1b767bbdaf61093fe6fdbd88b122/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:24:5-25:19
 	android:extractNativeLibs
 		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
 	android:appComponentFactory
 		ADDED from [androidx.core:core:1.13.1] /home/shehab/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/AndroidManifest.xml:28:18-86
 	android:supportsRtl
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:11:9-35
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:12:9-35
 	android:label
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:9:9-37
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:10:9-37
 	android:roundIcon
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:10:9-54
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:11:9-54
 	android:icon
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:8:9-43
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:9:9-43
 	android:theme
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:12:9-41
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:13:9-41
 	android:name
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:7:9-28
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:8:9-28
+property#android.window.PROPERTY_ACTIVITY_EMBEDDING_SPLITS_ENABLED
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:17:9-19:36
+	android:value
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:19:13-33
+	android:name
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:18:13-85
 activity#com.example.texviewer.MainActivity
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:14:9-47:20
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:21:9-54:20
 	android:launchMode
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:17:13-43
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:24:13-43
 	android:exported
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:16:13-36
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:23:13-36
 	android:name
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:15:13-41
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:22:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:18:13-21:29
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:25:13-28:29
 action#android.intent.action.MAIN
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:19:17-69
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:26:17-69
 	android:name
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:19:25-66
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:26:25-66
 category#android.intent.category.LAUNCHER
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:20:17-77
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:27:17-77
 	android:name
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:20:27-74
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:27:27-74
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.DEFAULT+data:mimeType:application/x-latex+data:mimeType:application/x-tex+data:mimeType:text/markdown+data:mimeType:text/plain+data:mimeType:text/x-markdown+data:scheme:content
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:24:13-33:29
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:31:13-40:29
 action#android.intent.action.VIEW
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:25:17-69
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:32:17-69
 	android:name
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:25:25-66
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:32:25-66
 category#android.intent.category.DEFAULT
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:26:17-76
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:33:17-76
 	android:name
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:26:27-73
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:33:27-73
 data
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:27:17-50
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
 	android:host
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:38:23-39
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:45:23-39
 	android:scheme
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:27:23-47
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:23-47
 	android:pathPattern
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:40:23-55
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:47:23-55
 	android:mimeType
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:28:23-52
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:35:23-52
 intent-filter#action:name:android.intent.action.VIEW+category:name:android.intent.category.DEFAULT+data:host:*+data:mimeType:*/*+data:pathPattern:.*\\\\.latex+data:pathPattern:.*\\\\.ltx+data:pathPattern:.*\\\\.markdown+data:pathPattern:.*\\\\.md+data:pathPattern:.*\\\\.tex+data:pathPattern:.*\\\\.txt+data:scheme:file
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:13-46:29
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:41:13-53:29
 activity#com.example.texviewer.ViewerActivity
-ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:49:9-53:109
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:56:9-60:109
 	android:parentActivityName
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:52:13-55
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:59:13-55
 	android:exported
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:51:13-37
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:58:13-37
 	android:configChanges
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:53:13-106
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:60:13-106
 	android:name
-		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:50:13-43
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:57:13-43
+meta-data#android.support.FILE_PROVIDER_PATHS
+ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:67:13-69:54
+	android:resource
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:69:17-51
+	android:name
+		ADDED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:68:17-67
 uses-sdk
 INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
@@ -169,6 +224,8 @@ MERGED from [androidx.activity:activity:1.9.1] /home/shehab/.gradle/caches/trans
 MERGED from [androidx.activity:activity:1.9.1] /home/shehab/.gradle/caches/transforms-4/d4eae6239ae40a774437e66bb01639a2/transformed/activity-1.9.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.activity:activity-ktx:1.9.1] /home/shehab/.gradle/caches/transforms-4/7bf5c3d7cb39f3232f11f4f775b33adb/transformed/activity-ktx-1.9.1/AndroidManifest.xml:5:5-44
 MERGED from [androidx.activity:activity-ktx:1.9.1] /home/shehab/.gradle/caches/transforms-4/7bf5c3d7cb39f3232f11f4f775b33adb/transformed/activity-ktx-1.9.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/shehab/.gradle/caches/transforms-4/dc9369d3a3308050fc6782cf03ea6014/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.emoji2:emoji2-views-helper:1.3.0] /home/shehab/.gradle/caches/transforms-4/dc9369d3a3308050fc6782cf03ea6014/transformed/emoji2-views-helper-1.3.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:21:5-44
@@ -219,24 +276,26 @@ MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /home/sheh
 MERGED from [androidx.lifecycle:lifecycle-viewmodel-savedstate:2.6.2] /home/shehab/.gradle/caches/transforms-4/075303c1a579c423313bb64f570c90a9/transformed/lifecycle-viewmodel-savedstate-2.6.2/AndroidManifest.xml:20:5-44
 MERGED from [androidx.core:core-ktx:1.13.1] /home/shehab/.gradle/caches/transforms-4/ee0481a11330c26fe06a00831ef0481b/transformed/core-ktx-1.13.1/AndroidManifest.xml:5:5-44
 MERGED from [androidx.core:core-ktx:1.13.1] /home/shehab/.gradle/caches/transforms-4/ee0481a11330c26fe06a00831ef0481b/transformed/core-ktx-1.13.1/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window.extensions.core:core:1.0.0] /home/shehab/.gradle/caches/transforms-4/cf26b24dbfbca8968e15f10992019ca6/transformed/core-1.0.0/AndroidManifest.xml:5:5-44
+MERGED from [androidx.window.extensions.core:core:1.0.0] /home/shehab/.gradle/caches/transforms-4/cf26b24dbfbca8968e15f10992019ca6/transformed/core-1.0.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] /home/shehab/.gradle/caches/transforms-4/b602daaf2448be52ca00da64464dbe99/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.annotation:annotation-experimental:1.4.0] /home/shehab/.gradle/caches/transforms-4/b602daaf2448be52ca00da64464dbe99/transformed/annotation-experimental-1.4.0/AndroidManifest.xml:5:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.1] /home/shehab/.gradle/caches/transforms-4/4231e0f5e7e82781e70369ed8bbbd417/transformed/documentfile-1.0.1/AndroidManifest.xml:20:5-44
 MERGED from [androidx.documentfile:documentfile:1.0.1] /home/shehab/.gradle/caches/transforms-4/4231e0f5e7e82781e70369ed8bbbd417/transformed/documentfile-1.0.1/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/shehab/.gradle/caches/transforms-4/c829f663b97a5e70a3d902a476572ec8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/shehab/.gradle/caches/transforms-4/c829f663b97a5e70a3d902a476572ec8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
 MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:21:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] /home/shehab/.gradle/caches/transforms-4/0caa330c8a83ae3d8aab7b79813c903a/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.cardview:cardview:1.0.0] /home/shehab/.gradle/caches/transforms-4/0caa330c8a83ae3d8aab7b79813c903a/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/shehab/.gradle/caches/transforms-4/0f311b49bca424a420b7c2ea65cfd17b/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.interpolator:interpolator:1.0.0] /home/shehab/.gradle/caches/transforms-4/0f311b49bca424a420b7c2ea65cfd17b/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/shehab/.gradle/caches/transforms-4/e76f1b767bbdaf61093fe6fdbd88b122/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
-MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/shehab/.gradle/caches/transforms-4/e76f1b767bbdaf61093fe6fdbd88b122/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.startup:startup-runtime:1.1.1] /home/shehab/.gradle/caches/transforms-4/705c330e03d4e2fcb62a924d14782115/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
 MERGED from [androidx.startup:startup-runtime:1.1.1] /home/shehab/.gradle/caches/transforms-4/705c330e03d4e2fcb62a924d14782115/transformed/startup-runtime-1.1.1/AndroidManifest.xml:21:5-23:41
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/shehab/.gradle/caches/transforms-4/c829f663b97a5e70a3d902a476572ec8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cursoradapter:cursoradapter:1.0.0] /home/shehab/.gradle/caches/transforms-4/c829f663b97a5e70a3d902a476572ec8/transformed/cursoradapter-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/shehab/.gradle/caches/transforms-4/0caa330c8a83ae3d8aab7b79813c903a/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.cardview:cardview:1.0.0] /home/shehab/.gradle/caches/transforms-4/0caa330c8a83ae3d8aab7b79813c903a/transformed/cardview-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/shehab/.gradle/caches/transforms-4/e76f1b767bbdaf61093fe6fdbd88b122/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.versionedparcelable:versionedparcelable:1.1.1] /home/shehab/.gradle/caches/transforms-4/e76f1b767bbdaf61093fe6fdbd88b122/transformed/versionedparcelable-1.1.1/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] /home/shehab/.gradle/caches/transforms-4/3cd12336f22dc1b12fb756d64dc91d51/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
 MERGED from [androidx.tracing:tracing:1.0.0] /home/shehab/.gradle/caches/transforms-4/3cd12336f22dc1b12fb756d64dc91d51/transformed/tracing-1.0.0/AndroidManifest.xml:20:5-22:41
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/shehab/.gradle/caches/transforms-4/0f311b49bca424a420b7c2ea65cfd17b/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
+MERGED from [androidx.interpolator:interpolator:1.0.0] /home/shehab/.gradle/caches/transforms-4/0f311b49bca424a420b7c2ea65cfd17b/transformed/interpolator-1.0.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/shehab/.gradle/caches/transforms-4/35b3db2516afa50d8f7eeea7a2525269/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.arch.core:core-runtime:2.2.0] /home/shehab/.gradle/caches/transforms-4/35b3db2516afa50d8f7eeea7a2525269/transformed/core-runtime-2.2.0/AndroidManifest.xml:20:5-44
 MERGED from [androidx.localbroadcastmanager:localbroadcastmanager:1.0.0] /home/shehab/.gradle/caches/transforms-4/e1270e825345b4a55e6210845cc44caf/transformed/localbroadcastmanager-1.0.0/AndroidManifest.xml:20:5-44
@@ -247,22 +306,18 @@ MERGED from [androidx.print:print:1.0.0] /home/shehab/.gradle/caches/transforms-
 		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
 	android:minSdkVersion
 		INJECTED from /home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml
-provider#androidx.startup.InitializationProvider
-ADDED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:24:9-32:20
-MERGED from [androidx.startup:startup-runtime:1.1.1] /home/shehab/.gradle/caches/transforms-4/705c330e03d4e2fcb62a924d14782115/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
-MERGED from [androidx.startup:startup-runtime:1.1.1] /home/shehab/.gradle/caches/transforms-4/705c330e03d4e2fcb62a924d14782115/transformed/startup-runtime-1.1.1/AndroidManifest.xml:26:9-30:34
-	tools:node
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:28:13-31
-	android:authorities
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:26:13-68
-	android:exported
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:27:13-37
+uses-library#androidx.window.extensions
+ADDED from [androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:23:9-25:40
+	android:required
+		ADDED from [androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:25:13-37
 	android:name
-		ADDED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:25:13-67
+		ADDED from [androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:24:13-54
+uses-library#androidx.window.sidecar
+ADDED from [androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:26:9-28:40
+	android:required
+		ADDED from [androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:28:13-37
+	android:name
+		ADDED from [androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:27:13-51
 meta-data#androidx.emoji2.text.EmojiCompatInitializer
 ADDED from [androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
 	android:value

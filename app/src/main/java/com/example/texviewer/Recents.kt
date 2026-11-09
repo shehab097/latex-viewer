@@ -17,12 +17,27 @@ object Recents {
     }
     fun add(c: Context, d: Doc) {
         val l = load(c).filter { it.uri != d.uri }.toMutableList().apply { add(0, d) }.take(30)
-        val a = JSONArray(); l.forEach { a.put(JSONObject().put("uri", it.uri).put("name", it.name)) }
-        prefs(c).edit().putString("list", a.toString()).apply()
+        save(c, l)
     }
     fun remove(c: Context, uri: String) {
-        val a = JSONArray(); load(c).filter { it.uri != uri }.forEach { a.put(JSONObject().put("uri", it.uri).put("name", it.name)) }
-        prefs(c).edit().putString("list", a.toString()).apply()
+        save(c, load(c).filter { it.uri != uri })
         thumbFile(c, uri).delete()
+    }
+    fun rename(c: Context, oldUri: String, newDoc: Doc) {
+        val oldThumb = thumbFile(c, oldUri)
+        val newThumb = thumbFile(c, newDoc.uri)
+        if (oldThumb.absolutePath != newThumb.absolutePath && oldThumb.exists()) {
+            oldThumb.copyTo(newThumb, overwrite = true)
+            oldThumb.delete()
+        }
+        val l = load(c).toMutableList()
+        val i = l.indexOfFirst { it.uri == oldUri }
+        if (i >= 0) l[i] = newDoc else l.add(0, newDoc)
+        save(c, l.take(30))
+    }
+    private fun save(c: Context, l: List<Doc>) {
+        val a = JSONArray()
+        l.forEach { a.put(JSONObject().put("uri", it.uri).put("name", it.name)) }
+        prefs(c).edit().putString("list", a.toString()).apply()
     }
 }

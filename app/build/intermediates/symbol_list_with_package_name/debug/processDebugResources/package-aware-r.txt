@@ -114,7 +114,9 @@ attr actionProviderClass
 attr actionTextColorAlpha
 attr actionViewClass
 attr activeIndicatorLabelPadding
+attr activityAction
 attr activityChooserViewStyle
+attr activityName
 attr addElevationShadow
 attr alertDialogButtonGroupStyle
 attr alertDialogCenterButtons
@@ -124,9 +126,11 @@ attr allowStacking
 attr alpha
 attr alphabeticModifiers
 attr altSrc
+attr alwaysExpand
 attr animateMenuItems
 attr animateNavigationIcon
 attr animate_relativeTo
+attr animationBackgroundColor
 attr animationMode
 attr appBarLayoutStyle
 attr applyMotionScene
@@ -272,6 +276,7 @@ attr chipStyle
 attr chipSurfaceColor
 attr circleRadius
 attr circularProgressIndicatorStyle
+attr clearTop
 attr clickAction
 attr clockFaceBackgroundColor
 attr clockHandColor
@@ -523,6 +528,9 @@ attr fastScrollHorizontalThumbDrawable
 attr fastScrollHorizontalTrackDrawable
 attr fastScrollVerticalThumbDrawable
 attr fastScrollVerticalTrackDrawable
+attr finishPrimaryWithPlaceholder
+attr finishPrimaryWithSecondary
+attr finishSecondaryWithPrimary
 attr firstBaselineToTopHeight
 attr floatingActionButtonLargePrimaryStyle
 attr floatingActionButtonLargeSecondaryStyle
@@ -915,6 +923,7 @@ attr percentX
 attr percentY
 attr perpendicularPath_percent
 attr pivotAnchor
+attr placeholderActivityName
 attr placeholderText
 attr placeholderTextAppearance
 attr placeholderTextColor
@@ -928,6 +937,7 @@ attr prefixTextAppearance
 attr prefixTextColor
 attr preserveIconSpacing
 attr pressedTranslationZ
+attr primaryActivityName
 attr progressBarPadding
 attr progressBarStyle
 attr queryBackground
@@ -956,6 +966,8 @@ attr searchHintIcon
 attr searchIcon
 attr searchPrefixText
 attr searchViewStyle
+attr secondaryActivityAction
+attr secondaryActivityName
 attr seekBarStyle
 attr selectableItemBackground
 attr selectableItemBackgroundBorderless
@@ -1002,6 +1014,13 @@ attr spanCount
 attr spinBars
 attr spinnerDropDownItemStyle
 attr spinnerStyle
+attr splitLayoutDirection
+attr splitMaxAspectRatioInLandscape
+attr splitMaxAspectRatioInPortrait
+attr splitMinHeightDp
+attr splitMinSmallestWidthDp
+attr splitMinWidthDp
+attr splitRatio
 attr splitTrack
 attr srcCompat
 attr stackFromEnd
@@ -1025,6 +1044,7 @@ attr state_with_icon
 attr statusBarBackground
 attr statusBarForeground
 attr statusBarScrim
+attr stickyPlaceholder
 attr strokeColor
 attr strokeWidth
 attr subMenuArrow
@@ -1075,6 +1095,7 @@ attr tabStyle
 attr tabTextAppearance
 attr tabTextColor
 attr tabUnboundedRipple
+attr tag
 attr targetId
 attr telltales_tailColor
 attr telltales_tailScale
@@ -2097,6 +2118,11 @@ dimen abc_text_size_subtitle_material_toolbar
 dimen abc_text_size_title_material
 dimen abc_text_size_title_material_toolbar
 dimen appcompat_dialog_background_inset
+dimen card_margin
+dimen card_min_width
+dimen card_title_horizontal_padding
+dimen card_title_text_size
+dimen card_title_vertical_padding
 dimen cardview_compat_inset_shadow
 dimen cardview_default_elevation
 dimen cardview_default_radius
@@ -2172,6 +2198,8 @@ dimen hint_pressed_alpha_material_light
 dimen item_touch_helper_max_drag_scroll_per_frame
 dimen item_touch_helper_swipe_escape_max_velocity
 dimen item_touch_helper_swipe_escape_velocity
+dimen library_padding
+dimen library_padding_bottom
 dimen m3_alert_dialog_action_bottom_padding
 dimen m3_alert_dialog_action_top_padding
 dimen m3_alert_dialog_corner_size
@@ -2810,6 +2838,7 @@ dimen notification_small_icon_size_as_large
 dimen notification_subtext_size
 dimen notification_top_pad
 dimen notification_top_pad_large_text
+dimen thumb_height
 dimen tooltip_corner_radius
 dimen tooltip_horizontal_padding
 dimen tooltip_margin
@@ -3083,10 +3112,14 @@ id action_text
 id actions
 id activity_chooser_view_content
 id add
+id adjacent
 id alertTitle
 id aligned
 id all
 id always
+id alwaysAllow
+id alwaysDisallow
+id androidx_window_activity_scope
 id animateToEnd
 id animateToStart
 id appbar
@@ -3106,6 +3139,7 @@ id beginOnFirstDraw
 id beginning
 id blocking
 id bottom
+id bottomToTop
 id bounce
 id buttonPanel
 id c_dark
@@ -3130,7 +3164,6 @@ id clip_horizontal
 id clip_vertical
 id clockwise
 id collapseActionView
-id collapsing
 id compress
 id confirm_button
 id container
@@ -3249,6 +3282,8 @@ id linear
 id list
 id listMode
 id list_item
+id locale
+id ltr
 id m3_side_sheet
 id marquee
 id masked
@@ -3362,6 +3397,7 @@ id progress_horizontal
 id radio
 id ratio
 id rectangles
+id rename
 id report_drawn
 id reset
 id reverseSawtooth
@@ -3372,6 +3408,7 @@ id right_side
 id root
 id rounded
 id row_index_key
+id rtl
 id save_non_transition_alpha
 id save_overlay_view
 id sawtooth
@@ -3396,6 +3433,7 @@ id search_voice_btn
 id select_dialog_listview
 id selected
 id selection_type
+id share
 id shortcut
 id showCustom
 id showHome
@@ -3413,6 +3451,7 @@ id spacer
 id special_effects_controller_view_tag
 id spline
 id split_action_bar
+id split_view
 id spread
 id spread_inside
 id square
@@ -3469,6 +3508,7 @@ id toggle
 id toolbar
 id top
 id topPanel
+id topToBottom
 id touch_outside
 id transitionToEnd
 id transitionToStart
@@ -3508,6 +3548,7 @@ integer config_tooltipAnimTime
 integer design_snackbar_text_max_lines
 integer design_tab_indicator_anim_duration_ms
 integer hide_password_duration
+integer library_max_columns
 integer m3_badge_max_number
 integer m3_btn_anim_delay_ms
 integer m3_btn_anim_duration_ms
@@ -5000,6 +5041,8 @@ styleable ActionMenuItemView android_minWidth
 styleable ActionMenuView
 styleable ActionMode background backgroundSplit closeItemLayout height subtitleTextStyle titleTextStyle
 styleable ActivityChooserView expandActivityOverflowButtonDrawable initialActivityCount
+styleable ActivityFilter activityAction activityName
+styleable ActivityRule alwaysExpand tag
 styleable AlertDialog android_layout buttonIconDimen buttonPanelSideLayout listItemLayout listLayout multiChoiceItemLayout showTitle singleChoiceItemLayout
 styleable AnimatedStateListDrawableCompat android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
 styleable AnimatedStateListDrawableItem android_id android_drawable
@@ -5119,6 +5162,9 @@ styleable Slider android_enabled android_value android_stepSize android_valueFro
 styleable Snackbar snackbarButtonStyle snackbarStyle snackbarTextViewStyle
 styleable SnackbarLayout android_maxWidth actionTextColorAlpha animationMode backgroundOverlayColorAlpha backgroundTint backgroundTintMode elevation maxActionInlineWidth shapeAppearance shapeAppearanceOverlay
 styleable Spinner android_entries android_popupBackground android_prompt android_dropDownWidth popupTheme
+styleable SplitPairFilter primaryActivityName secondaryActivityAction secondaryActivityName
+styleable SplitPairRule animationBackgroundColor clearTop finishPrimaryWithSecondary finishSecondaryWithPrimary splitLayoutDirection splitMaxAspectRatioInLandscape splitMaxAspectRatioInPortrait splitMinHeightDp splitMinSmallestWidthDp splitMinWidthDp splitRatio tag
+styleable SplitPlaceholderRule animationBackgroundColor finishPrimaryWithPlaceholder placeholderActivityName splitLayoutDirection splitMaxAspectRatioInLandscape splitMaxAspectRatioInPortrait splitMinHeightDp splitMinSmallestWidthDp splitMinWidthDp splitRatio stickyPlaceholder tag
 styleable State android_id constraints
 styleable StateListDrawable android_dither android_visible android_variablePadding android_constantSize android_enterFadeDuration android_exitFadeDuration
 styleable StateListDrawableItem android_drawable
@@ -5140,3 +5186,5 @@ styleable View android_theme android_focusable paddingEnd paddingStart theme
 styleable ViewBackgroundHelper android_background backgroundTint backgroundTintMode
 styleable ViewPager2 android_orientation
 styleable ViewStubCompat android_id android_layout android_inflatedId
+xml file_paths
+xml main_split_config

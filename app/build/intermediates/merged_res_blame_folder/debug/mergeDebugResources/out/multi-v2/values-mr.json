@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "com.example.texviewer.app-mergeDebugResources-34:/values-mr/values-mr.xml",
+            "outputFile": "com.example.texviewer.app-mergeDebugResources-36:/values-mr/values-mr.xml",
             "map": [
                 {
                     "source": "/home/shehab/.gradle/caches/transforms-4/8e0a0bff2d388b6446750efdf4a5758f/transformed/core-1.13.1/res/values-mr/values-mr.xml",

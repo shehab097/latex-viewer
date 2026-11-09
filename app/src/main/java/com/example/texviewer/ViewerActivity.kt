@@ -2,6 +2,7 @@ package com.example.texviewer
 
 import android.content.Context
 import android.content.Intent
+import android.content.res.Configuration
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.Rect
@@ -29,11 +30,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.ColorUtils
 import androidx.core.view.WindowCompat
 import androidx.documentfile.provider.DocumentFile
+import androidx.window.embedding.ActivityEmbeddingController
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.chip.ChipGroup
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.slider.Slider
 import org.json.JSONObject
 import java.io.File
@@ -56,6 +59,8 @@ class ViewerActivity : AppCompatActivity() {
     private var scaleUpdate: Runnable? = null
     private var toolbarHidden = false
     private var appBarAnimating = false
+    private var autoExportPdf = false
+    private var autoExportStarted = false
 
     private val prefs by lazy { getSharedPreferences("p", 0) }
 
@@ -108,6 +113,7 @@ class ViewerActivity : AppCompatActivity() {
         }
         uri = incoming
         name = intent?.getStringExtra("name") ?: displayName(uri) ?: uri.lastPathSegment ?: "Document"
+        autoExportPdf = intent?.getBooleanExtra("exportPdf", false) == true
 
         toolbar.title = name
         toolbar.setNavigationOnClickListener { finish() }
@@ -116,6 +122,8 @@ class ViewerActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.display -> showSettings()
                 R.id.export_pdf -> exportPdf()
+                R.id.share -> shareDocument()
+                R.id.rename -> renameDocument()
                 else -> return@setOnMenuItemClickListener false
             }
             true
@@ -183,6 +191,10 @@ class ViewerActivity : AppCompatActivity() {
                         body.contains("\\begin{pgfpicture}") ||
                         body.contains("\\begin{circuitikz}")
                     view.postDelayed({ saveThumb() }, if (hasTikz) 6000L else 1200L)
+                    if (autoExportPdf && !autoExportStarted) {
+                        autoExportStarted = true
+                        view.postDelayed({ exportPdf() }, 500L)
+                    }
                 } else {
                     view.evaluateJavascript(
                         "showError(${JSONObject.quote("The file could not be read.")},${JSONObject.quote(loadError ?: "")})",
@@ -444,20 +456,38 @@ class ViewerActivity : AppCompatActivity() {
 
     private fun applyChrome() {
         val (bg, fg) = palette[theme] ?: palette["light"]!!
-        root.setBackgroundColor(bg)
-        appbar.setBackgroundColor(bg)
-        toolbar.setBackgroundColor(bg)
-        toolbar.setTitleTextColor(fg)
+        val embedded = runCatching {
+            ActivityEmbeddingController.getInstance(this).isActivityEmbedded(this)
+        }.getOrDefault(false)
+
+        // In a split the library and viewer share one window, so use the app
+        // surface for the toolbar and status bar instead of the document theme.
+        // The page itself keeps the chosen reading theme.
+        val chromeColor = if (embedded) {
+            MaterialColors.getColor(root, com.google.android.material.R.attr.colorSurface)
+        } else {
+            bg
+        }
+        val chromeFg = if (embedded) {
+            MaterialColors.getColor(root, com.google.android.material.R.attr.colorOnSurface)
+        } else {
+            fg
+        }
+        root.setBackgroundColor(chromeColor)
+        appbar.setBackgroundColor(chromeColor)
+        toolbar.setBackgroundColor(chromeColor)
+        toolbar.setTitleTextColor(chromeFg)
         toolbar.subtitle = null
         web.setBackgroundColor(bg)
-        toolbar.navigationIcon?.mutate()?.setTint(fg)
-        toolbar.overflowIcon?.mutate()?.setTint(fg)
-        toolbar.menu.findItem(R.id.display)?.icon?.mutate()?.setTint(fg)
+        toolbar.navigationIcon?.mutate()?.setTint(chromeFg)
+        toolbar.overflowIcon?.mutate()?.setTint(chromeFg)
+        toolbar.menu.findItem(R.id.display)?.icon?.mutate()?.setTint(chromeFg)
+
         // Keep the status bar opaque so a collapsing toolbar cannot show through it.
-        window.statusBarColor = bg
-        window.navigationBarColor = bg
+        window.statusBarColor = chromeColor
+        window.navigationBarColor = chromeColor
         WindowCompat.getInsetsController(window, root).apply {
-            val light = ColorUtils.calculateLuminance(bg) > 0.5
+            val light = ColorUtils.calculateLuminance(chromeColor) > 0.5
             isAppearanceLightStatusBars = light
             isAppearanceLightNavigationBars = light
         }
@@ -495,6 +525,20 @@ class ViewerActivity : AppCompatActivity() {
         appbar.postDelayed({ appBarAnimating = false }, 400)
     }
 
+    private fun shareDocument() {
+        Sharing.share(this, uri, name)
+    }
+
+    private fun renameDocument() {
+        val oldUri = uri.toString()
+        RenameDialog.show(this, uri, name) { result ->
+            uri = result.uri
+            name = result.name
+            toolbar.title = name
+            Recents.rename(this, oldUri, Doc(result.uri.toString(), result.name))
+        }
+    }
+
     private fun exportPdf(attempt: Int = 0) {
         if (destroyed) return
         if (!pageReady) {
@@ -504,7 +548,7 @@ class ViewerActivity : AppCompatActivity() {
         web.evaluateJavascript("document.querySelectorAll('.tikz-status').length") { result ->
             val pending = result?.trim()?.toIntOrNull() ?: 0
             if (pending > 0) {
-                if (attempt >= 20) {
+                if (attempt >= 60) {
                     Toast.makeText(this, "Diagrams are still rendering. Try again in a moment.", Toast.LENGTH_LONG).show()
                 } else {
                     if (attempt == 0) {
@@ -581,6 +625,25 @@ class ViewerActivity : AppCompatActivity() {
             sizeValue.text = "100%"
             updateScale()
         }
+        dialog.setOnShowListener {
+            if (resources.configuration.screenWidthDp >= 600) {
+                val density = resources.displayMetrics.density
+                val maxWidth = (560 * density).toInt()
+                val width = minOf(
+                    resources.displayMetrics.widthPixels - (32 * density).toInt(),
+                    maxWidth
+                )
+                val sheet = dialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+                sheet?.layoutParams?.let { lp ->
+                    lp.width = width
+                    if (lp is android.widget.FrameLayout.LayoutParams) {
+                        lp.gravity = android.view.Gravity.CENTER_HORIZONTAL or android.view.Gravity.BOTTOM
+                    }
+                    sheet.layoutParams = lp
+                    sheet.requestLayout()
+                }
+            }
+        }
         dialog.show()
     }
 
@@ -653,6 +716,9 @@ class ViewerActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         if (::web.isInitialized) web.onResume()
+        // The split is fully established by now, so re-apply the chrome with
+        // the correct embedded status-bar treatment.
+        if (::root.isInitialized) applyChrome()
     }
 
     override fun onPause() {

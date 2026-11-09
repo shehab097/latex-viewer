@@ -23,7 +23,9 @@ A lightweight Android app for reading LaTeX (`.tex`) and Markdown (`.md`) docume
   - TikZ/PGF pictures rendered locally with a bundled WebAssembly TeX engine
 - **Display settings** — choose Light, Dark, Gray, Grayscale, or Night theme; serif or sans-serif text; and a text size from 60% to 250%. Settings are remembered between sessions. Images and diagrams are inverted in the Dark theme so they stay legible.
 - **Auto-hiding toolbar** — while reading, the top bar hides when you scroll down and returns when you scroll up or reach the top of the document.
-- **Export as PDF** — use the overflow menu to open Android's print dialog and choose **Save as PDF**. The export is rendered in a light, print-friendly theme and waits for TikZ diagrams to finish compiling.
+- **Export as PDF** — use the overflow menu or long-press a library item to open Android's print dialog and choose **Save as PDF**. The export is rendered in a light, print-friendly theme with A4 margins and a page-number footer, and it waits for TikZ diagrams to finish compiling.
+- **Rename and share** — long-press a document in the library for **Rename**, **Export as PDF**, **Share**, and **Remove from recents**. The viewer's overflow menu also offers Export as PDF, Share, and Rename.
+- **Supported files only** — the in-app file picker filters to supported document types, and unsupported files are rejected.
 - **Material You** — dynamic colors are applied on Android 12+ when available.
 - **Offline** — KaTeX, its fonts, `marked`, and the TikZJax TeX engine are bundled in the APK; documents are read locally.
 
@@ -96,6 +98,7 @@ This is a **reader**, not a LaTeX compiler:
 - TikZ rendering runs a WebAssembly TeX engine, so the first diagram in a document can take a few seconds to appear on slower devices.
 - `\includegraphics` falls back to a labeled placeholder when the image cannot be resolved.
 - PDF export is handled by Android's print dialog; choose **Save as PDF** as the printer. There is no built-in editor.
+- Renaming requires the document provider to grant write access. Read-only files and some providers may refuse the rename.
 - Rendering fidelity depends on the bundled KaTeX/marked versions.
 
 ## Third-party components
