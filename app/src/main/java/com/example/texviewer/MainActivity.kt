@@ -7,8 +7,11 @@ import android.os.Bundle
 import android.provider.OpenableColumns
 import android.util.DisplayMetrics
 import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.TextView
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
@@ -174,6 +177,24 @@ class MainActivity : AppCompatActivity() {
         findViewById<FloatingActionButton>(R.id.fabFolder).setOnClickListener {
             pickTree.launch(null)
         }
+        // The root no longer fits system windows so the library and the page
+        // can draw behind the gesture bar. Keep the floating buttons above the
+        // bar (and give their shadows room on the right) with the real insets.
+        val fabContainer = findViewById<View>(R.id.fabContainer)
+        val fabBaseMargin = (16 * resources.displayMetrics.density).toInt()
+        ViewCompat.setOnApplyWindowInsetsListener(fabContainer) { v, insets ->
+            val bars = insets.getInsets(
+                WindowInsetsCompat.Type.systemBars() or
+                    WindowInsetsCompat.Type.displayCutout()
+            )
+            (v.layoutParams as ViewGroup.MarginLayoutParams).apply {
+                bottomMargin = fabBaseMargin + bars.bottom
+                rightMargin = fabBaseMargin + bars.right
+                v.layoutParams = this
+            }
+            insets
+        }
+        ViewCompat.requestApplyInsets(fabContainer)
         onBackPressedDispatcher.addCallback(this, back)
 
         handleIntent(intent)

@@ -3225,6 +3225,7 @@ id exitUntilCollapsed
 id expand_activities_button
 id expanded_menu
 id export_pdf
+id fabContainer
 id fabFile
 id fabFolder
 id fade

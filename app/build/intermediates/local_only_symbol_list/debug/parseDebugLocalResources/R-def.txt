@@ -34,6 +34,7 @@ id empty
 id emptyText
 id emptyTitle
 id export_pdf
+id fabContainer
 id fabFile
 id fabFolder
 id fonts

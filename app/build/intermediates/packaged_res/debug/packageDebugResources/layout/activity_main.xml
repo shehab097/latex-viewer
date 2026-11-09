@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="?attr/colorSurface">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -32,7 +32,8 @@
         <TextView android:id="@+id/emptyText" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="4dp" android:maxWidth="320dp" android:text="Open a LaTeX (.tex) or Markdown (.md) file or folder to get started" android:gravity="center" android:textAppearance="?attr/textAppearanceBodyMedium"/>
     </LinearLayout>
 
-    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom|end" android:layout_margin="16dp" android:orientation="vertical" android:gravity="end">
+    <LinearLayout android:id="@+id/fabContainer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom|end" android:layout_margin="16dp"
+        android:padding="8dp" android:clipChildren="false" android:clipToPadding="false" android:orientation="vertical" android:gravity="end">
         <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/fabFolder" style="@style/Widget.Material3.FloatingActionButton.Secondary"
             android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="12dp" app:srcCompat="@drawable/ic_folder_open" android:contentDescription="Open folder"/>
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton android:id="@+id/fabFile" android:layout_width="wrap_content" android:layout_height="wrap_content"
