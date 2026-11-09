@@ -20,6 +20,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.window.embedding.EmbeddingRule
 import androidx.window.embedding.RuleController
+import androidx.window.embedding.SplitController
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
@@ -46,6 +47,11 @@ class MainActivity : AppCompatActivity() {
             }
             return widthPx / resources.displayMetrics.density >= 600f
         }
+    private val canSplit: Boolean
+        get() = isLargeScreen && runCatching {
+            SplitController.getInstance(this).splitSupportStatus ==
+                SplitController.SplitSupportStatus.SPLIT_AVAILABLE
+        }.getOrDefault(false)
     private val stack = ArrayList<DocumentFile>()
     private val exts = setOf("tex", "ltx", "latex", "md", "markdown", "mdown", "mkd", "txt")
     private val supportedMimes = arrayOf(
@@ -108,7 +114,7 @@ class MainActivity : AppCompatActivity() {
 
         splitEnabled = prefs.getBoolean("split_view", false)
         toolbar.menu.findItem(R.id.split_view)?.apply {
-            isVisible = isLargeScreen
+            isVisible = canSplit
             isChecked = splitEnabled
         }
         toolbar.setOnMenuItemClickListener { item ->
@@ -192,7 +198,7 @@ class MainActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         toolbar.menu.findItem(R.id.split_view)?.apply {
-            isVisible = isLargeScreen
+            isVisible = canSplit
             isChecked = splitEnabled
         }
         adapter.invalidateThumbs()

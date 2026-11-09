@@ -713,6 +713,13 @@ class ViewerActivity : AppCompatActivity() {
         }
     }
 
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        // Rotating or resizing can change whether this activity is embedded,
+        // so refresh the split-aware toolbar/status-bar treatment.
+        if (::root.isInitialized) applyChrome()
+    }
+
     override fun onResume() {
         super.onResume()
         if (::web.isInitialized) web.onResume()
