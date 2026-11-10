@@ -1,4 +1,4 @@
-#Tue Nov 10 00:30:27 BDT 2026
+#Tue Nov 10 19:38:55 BDT 2026
 base.0=/home/shehab/Downloads/LatexViewer/app/build/intermediates/dex/debug/mergeExtDexDebug/classes.dex
 base.1=/home/shehab/Downloads/LatexViewer/app/build/intermediates/dex/debug/mergeProjectDexDebug/0/classes.dex
 base.2=/home/shehab/Downloads/LatexViewer/app/build/intermediates/dex/debug/mergeProjectDexDebug/5/classes.dex

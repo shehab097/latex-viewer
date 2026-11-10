@@ -8,6 +8,15 @@
             <TextView android:id="@+id/badge" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10dp"
                 android:background="@drawable/bg_badge" android:paddingHorizontal="8dp" android:paddingVertical="3dp" android:textSize="11sp" android:textStyle="bold"
                 android:textColor="?attr/colorOnSecondaryContainer"/>
+            <com.google.android.material.checkbox.MaterialCheckBox android:id="@+id/check"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_gravity="top|end" android:layout_margin="6dp" android:padding="2dp"
+                android:background="@drawable/bg_drag_handle" android:clickable="false" android:focusable="false"
+                android:visibility="gone" android:contentDescription="Selected"/>
+            <ImageView android:id="@+id/drag" android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end" android:layout_margin="8dp" android:padding="6dp"
+                android:background="@drawable/bg_drag_handle" android:src="@drawable/ic_drag_handle"
+                android:tint="?attr/colorOnSurface" android:contentDescription="Drag"/>
         </FrameLayout>
         <TextView android:id="@+id/title" android:layout_width="match_parent" android:layout_height="wrap_content"
             android:paddingHorizontal="@dimen/card_title_horizontal_padding" android:paddingVertical="@dimen/card_title_vertical_padding"

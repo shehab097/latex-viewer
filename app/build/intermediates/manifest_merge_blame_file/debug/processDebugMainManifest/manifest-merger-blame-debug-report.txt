@@ -39,227 +39,228 @@
 26-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:11:9-54
 27        android:supportsRtl="true"
 27-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:12:9-35
-28        android:theme="@style/Theme.App" >
-28-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:13:9-41
-29
-30        <!--
-31             Tell the system this app supports activity embedding so tablets
-32             can show the library and viewer side by side.
-33        -->
-34        <property
-34-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:17:9-19:36
-35            android:name="android.window.PROPERTY_ACTIVITY_EMBEDDING_SPLITS_ENABLED"
-35-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:18:13-85
-36            android:value="true" />
-36-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:19:13-33
-37
-38        <activity
-38-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:21:9-54:20
-39            android:name="com.example.texviewer.MainActivity"
-39-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:22:13-41
-40            android:exported="true"
-40-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:23:13-36
-41            android:launchMode="singleTop" >
-41-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:24:13-43
-42            <intent-filter>
-42-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:25:13-28:29
-43                <action android:name="android.intent.action.MAIN" />
-43-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:26:17-69
-43-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:26:25-66
-44
-45                <category android:name="android.intent.category.LAUNCHER" />
-45-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:27:17-77
-45-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:27:27-74
-46            </intent-filter>
-47
-48            <!-- open .tex / .md files from file managers -->
-49            <intent-filter>
-49-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:31:13-40:29
-50                <action android:name="android.intent.action.VIEW" />
-50-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:32:17-69
-50-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:32:25-66
-51
-52                <category android:name="android.intent.category.DEFAULT" />
-52-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:33:17-76
-52-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:33:27-73
-53
-54                <data android:scheme="content" />
-54-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
-54-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:23-47
-55                <data android:mimeType="text/plain" />
+28        android:testOnly="true"
+29        android:theme="@style/Theme.App" >
+29-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:13:9-41
+30
+31        <!--
+32             Tell the system this app supports activity embedding so tablets
+33             can show the library and viewer side by side.
+34        -->
+35        <property
+35-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:17:9-19:36
+36            android:name="android.window.PROPERTY_ACTIVITY_EMBEDDING_SPLITS_ENABLED"
+36-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:18:13-85
+37            android:value="true" />
+37-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:19:13-33
+38
+39        <activity
+39-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:21:9-54:20
+40            android:name="com.example.texviewer.MainActivity"
+40-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:22:13-41
+41            android:exported="true"
+41-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:23:13-36
+42            android:launchMode="singleTop" >
+42-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:24:13-43
+43            <intent-filter>
+43-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:25:13-28:29
+44                <action android:name="android.intent.action.MAIN" />
+44-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:26:17-69
+44-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:26:25-66
+45
+46                <category android:name="android.intent.category.LAUNCHER" />
+46-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:27:17-77
+46-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:27:27-74
+47            </intent-filter>
+48
+49            <!-- open .tex / .md files from file managers -->
+50            <intent-filter>
+50-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:31:13-40:29
+51                <action android:name="android.intent.action.VIEW" />
+51-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:32:17-69
+51-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:32:25-66
+52
+53                <category android:name="android.intent.category.DEFAULT" />
+53-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:33:17-76
+53-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:33:27-73
+54
+55                <data android:scheme="content" />
 55-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
-55-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:35:23-52
-56                <data android:mimeType="text/markdown" />
+55-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:23-47
+56                <data android:mimeType="text/plain" />
 56-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
 56-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:35:23-52
-57                <data android:mimeType="text/x-markdown" />
+57                <data android:mimeType="text/markdown" />
 57-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
 57-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:35:23-52
-58                <data android:mimeType="application/x-tex" />
+58                <data android:mimeType="text/x-markdown" />
 58-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
 58-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:35:23-52
-59                <data android:mimeType="application/x-latex" />
+59                <data android:mimeType="application/x-tex" />
 59-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
 59-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:35:23-52
-60            </intent-filter>
-61            <intent-filter>
-61-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:41:13-53:29
-62                <action android:name="android.intent.action.VIEW" />
-62-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:32:17-69
-62-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:32:25-66
-63
-64                <category android:name="android.intent.category.DEFAULT" />
-64-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:33:17-76
-64-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:33:27-73
-65
-66                <data android:scheme="file" />
-66-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
-66-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:23-47
-67                <data android:host="*" />
+60                <data android:mimeType="application/x-latex" />
+60-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
+60-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:35:23-52
+61            </intent-filter>
+62            <intent-filter>
+62-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:41:13-53:29
+63                <action android:name="android.intent.action.VIEW" />
+63-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:32:17-69
+63-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:32:25-66
+64
+65                <category android:name="android.intent.category.DEFAULT" />
+65-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:33:17-76
+65-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:33:27-73
+66
+67                <data android:scheme="file" />
 67-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
-67-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:45:23-39
-68                <data android:mimeType="*/*" />
+67-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:23-47
+68                <data android:host="*" />
 68-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
-68-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:35:23-52
-69                <data android:pathPattern=".*\\\\.tex" />
+68-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:45:23-39
+69                <data android:mimeType="*/*" />
 69-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
-69-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:47:23-55
-70                <data android:pathPattern=".*\\\\.ltx" />
+69-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:35:23-52
+70                <data android:pathPattern=".*\\\\.tex" />
 70-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
 70-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:47:23-55
-71                <data android:pathPattern=".*\\\\.latex" />
+71                <data android:pathPattern=".*\\\\.ltx" />
 71-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
 71-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:47:23-55
-72                <data android:pathPattern=".*\\\\.md" />
+72                <data android:pathPattern=".*\\\\.latex" />
 72-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
 72-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:47:23-55
-73                <data android:pathPattern=".*\\\\.markdown" />
+73                <data android:pathPattern=".*\\\\.md" />
 73-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
 73-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:47:23-55
-74                <data android:pathPattern=".*\\\\.txt" />
+74                <data android:pathPattern=".*\\\\.markdown" />
 74-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
 74-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:47:23-55
-75            </intent-filter>
-76        </activity>
-77        <activity
-77-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:56:9-60:109
-78            android:name="com.example.texviewer.ViewerActivity"
-78-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:57:13-43
-79            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden"
-79-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:60:13-106
-80            android:exported="false"
-80-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:58:13-37
-81            android:parentActivityName="com.example.texviewer.MainActivity" />
-81-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:59:13-55
-82        <activity
-82-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:62:9-66:109
-83            android:name="com.example.texviewer.FullScreenViewerActivity"
-83-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:63:13-53
-84            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden"
-84-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:66:13-106
-85            android:exported="false"
-85-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:64:13-37
-86            android:parentActivityName="com.example.texviewer.MainActivity" />
-86-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:65:13-55
-87
-88        <provider
-89            android:name="androidx.core.content.FileProvider"
-89-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:69:13-62
-90            android:authorities="com.example.texviewer.fileprovider"
-90-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:70:13-64
-91            android:exported="false"
-91-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:71:13-37
-92            android:grantUriPermissions="true" >
-92-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:72:13-47
-93            <meta-data
-93-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:73:13-75:54
-94                android:name="android.support.FILE_PROVIDER_PATHS"
-94-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:74:17-67
-95                android:resource="@xml/file_paths" />
-95-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:75:17-51
-96        </provider>
-97        <provider
-98            android:name="androidx.startup.InitializationProvider"
-98-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:79:13-67
-99            android:authorities="com.example.texviewer.androidx-startup"
-99-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:80:13-68
-100            android:exported="false" >
-100-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:81:13-37
-101            <meta-data
-102                android:name="com.example.texviewer.SplitInitializer"
-102-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:84:17-65
-103                android:value="androidx.startup" />
-103-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:85:17-49
-104            <meta-data
-104-->[androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
-105                android:name="androidx.emoji2.text.EmojiCompatInitializer"
-105-->[androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
-106                android:value="androidx.startup" />
-106-->[androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
-107            <meta-data
-107-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
-108                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
-108-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
-109                android:value="androidx.startup" />
-109-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
-110            <meta-data
-110-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
-111                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
-111-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
-112                android:value="androidx.startup" />
-112-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
-113        </provider>
-114
-115        <uses-library
-115-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:23:9-25:40
-116            android:name="androidx.window.extensions"
-116-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:24:13-54
-117            android:required="false" />
-117-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:25:13-37
-118        <uses-library
-118-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:26:9-28:40
-119            android:name="androidx.window.sidecar"
-119-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:27:13-51
-120            android:required="false" />
-120-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:28:13-37
-121
-122        <receiver
-122-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
-123            android:name="androidx.profileinstaller.ProfileInstallReceiver"
-123-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
-124            android:directBootAware="false"
-124-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
-125            android:enabled="true"
-125-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
-126            android:exported="true"
-126-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
-127            android:permission="android.permission.DUMP" >
-127-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
-128            <intent-filter>
-128-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
-129                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
-129-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
-129-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
-130            </intent-filter>
-131            <intent-filter>
-131-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
-132                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
-132-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
-132-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
-133            </intent-filter>
-134            <intent-filter>
-134-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
-135                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
-135-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
-135-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
-136            </intent-filter>
-137            <intent-filter>
-137-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
-138                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
-138-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
-138-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
-139            </intent-filter>
-140        </receiver>
-141    </application>
-142
-143</manifest>
+75                <data android:pathPattern=".*\\\\.txt" />
+75-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:34:17-50
+75-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:47:23-55
+76            </intent-filter>
+77        </activity>
+78        <activity
+78-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:56:9-60:109
+79            android:name="com.example.texviewer.ViewerActivity"
+79-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:57:13-43
+80            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden"
+80-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:60:13-106
+81            android:exported="false"
+81-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:58:13-37
+82            android:parentActivityName="com.example.texviewer.MainActivity" />
+82-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:59:13-55
+83        <activity
+83-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:62:9-66:109
+84            android:name="com.example.texviewer.FullScreenViewerActivity"
+84-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:63:13-53
+85            android:configChanges="orientation|screenSize|smallestScreenSize|screenLayout|keyboardHidden"
+85-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:66:13-106
+86            android:exported="false"
+86-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:64:13-37
+87            android:parentActivityName="com.example.texviewer.MainActivity" />
+87-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:65:13-55
+88
+89        <provider
+90            android:name="androidx.core.content.FileProvider"
+90-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:69:13-62
+91            android:authorities="com.example.texviewer.fileprovider"
+91-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:70:13-64
+92            android:exported="false"
+92-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:71:13-37
+93            android:grantUriPermissions="true" >
+93-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:72:13-47
+94            <meta-data
+94-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:73:13-75:54
+95                android:name="android.support.FILE_PROVIDER_PATHS"
+95-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:74:17-67
+96                android:resource="@xml/file_paths" />
+96-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:75:17-51
+97        </provider>
+98        <provider
+99            android:name="androidx.startup.InitializationProvider"
+99-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:79:13-67
+100            android:authorities="com.example.texviewer.androidx-startup"
+100-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:80:13-68
+101            android:exported="false" >
+101-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:81:13-37
+102            <meta-data
+103                android:name="com.example.texviewer.SplitInitializer"
+103-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:84:17-65
+104                android:value="androidx.startup" />
+104-->/home/shehab/Downloads/LatexViewer/app/src/main/AndroidManifest.xml:85:17-49
+105            <meta-data
+105-->[androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:29:13-31:52
+106                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+106-->[androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:30:17-75
+107                android:value="androidx.startup" />
+107-->[androidx.emoji2:emoji2:1.3.0] /home/shehab/.gradle/caches/transforms-4/192474c036ec43764acdf6f3e34ae042/transformed/emoji2-1.3.0/AndroidManifest.xml:31:17-49
+108            <meta-data
+108-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+109                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+109-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+110                android:value="androidx.startup" />
+110-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/shehab/.gradle/caches/transforms-4/44d9374c2fc79a1ce870385ec114cea5/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+111            <meta-data
+111-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:29:13-31:52
+112                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+112-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:30:17-85
+113                android:value="androidx.startup" />
+113-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:31:17-49
+114        </provider>
+115
+116        <uses-library
+116-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:23:9-25:40
+117            android:name="androidx.window.extensions"
+117-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:24:13-54
+118            android:required="false" />
+118-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:25:13-37
+119        <uses-library
+119-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:26:9-28:40
+120            android:name="androidx.window.sidecar"
+120-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:27:13-51
+121            android:required="false" />
+121-->[androidx.window:window:1.3.0] /home/shehab/.gradle/caches/transforms-4/139d4fc4b1b271189b5f07fc1c3e62bb/transformed/window-1.3.0/AndroidManifest.xml:28:13-37
+122
+123        <receiver
+123-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:34:9-52:20
+124            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+124-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:35:13-76
+125            android:directBootAware="false"
+125-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:36:13-44
+126            android:enabled="true"
+126-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:37:13-35
+127            android:exported="true"
+127-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:38:13-36
+128            android:permission="android.permission.DUMP" >
+128-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:39:13-57
+129            <intent-filter>
+129-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:40:13-42:29
+130                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+130-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:17-91
+130-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:41:25-88
+131            </intent-filter>
+132            <intent-filter>
+132-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:43:13-45:29
+133                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+133-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:17-85
+133-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:44:25-82
+134            </intent-filter>
+135            <intent-filter>
+135-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:46:13-48:29
+136                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+136-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:17-88
+136-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:47:25-85
+137            </intent-filter>
+138            <intent-filter>
+138-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:49:13-51:29
+139                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+139-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:17-95
+139-->[androidx.profileinstaller:profileinstaller:1.3.1] /home/shehab/.gradle/caches/transforms-4/4e16cc280eaa0a1f5277c41379c36ea2/transformed/profileinstaller-1.3.1/AndroidManifest.xml:50:25-92
+140            </intent-filter>
+141        </receiver>
+142    </application>
+143
+144</manifest>

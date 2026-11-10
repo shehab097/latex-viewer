@@ -2,6 +2,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto">
     <item android:id="@+id/search" android:title="Search" android:icon="@drawable/ic_search"
         app:showAsAction="ifRoom|collapseActionView" app:actionViewClass="androidx.appcompat.widget.SearchView"/>
+    <item android:id="@+id/view_mode" android:title="List view" android:icon="@drawable/ic_list"
+        app:showAsAction="ifRoom" />
+    <item android:id="@+id/paste" android:title="Paste" android:icon="@drawable/ic_paste"
+        android:visible="false" app:showAsAction="ifRoom" />
     <item android:id="@+id/split_view" android:title="Open in split view"
         android:checkable="true" app:showAsAction="never" />
+    <item android:id="@+id/open_folder" android:title="Browse folder" android:icon="@drawable/ic_folder_open"
+        app:showAsAction="never" />
+
+    <item android:id="@+id/sel_copy" android:title="Copy" android:icon="@drawable/ic_copy"
+        android:visible="false" app:showAsAction="ifRoom" />
+    <item android:id="@+id/sel_cut" android:title="Cut" android:icon="@drawable/ic_cut"
+        android:visible="false" app:showAsAction="ifRoom" />
+    <item android:id="@+id/sel_move" android:title="Move" android:icon="@drawable/ic_move"
+        android:visible="false" app:showAsAction="ifRoom" />
+    <item android:id="@+id/sel_delete" android:title="Delete" android:icon="@drawable/ic_delete"
+        android:visible="false" app:showAsAction="ifRoom" />
+    <item android:id="@+id/sel_more" android:title="More"
+        android:visible="false" app:showAsAction="never" />
+    <item android:id="@+id/sel_select_all" android:title="Select all"
+        android:visible="false" app:showAsAction="never" />
 </menu>

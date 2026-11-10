@@ -4,12 +4,20 @@
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/xml/file_paths.xml"
     },
     {
-        "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_launcher_foreground.xml.flat",
-        "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/drawable/ic_launcher_foreground.xml"
+        "merged": "com.example.texviewer.app-debug-38:/drawable_ic_move.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/drawable/ic_move.xml"
     },
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/mipmap-anydpi_ic_launcher.xml.flat",
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/mipmap-anydpi/ic_launcher.xml"
+    },
+    {
+        "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_launcher_foreground.xml.flat",
+        "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/drawable/ic_launcher_foreground.xml"
+    },
+    {
+        "merged": "com.example.texviewer.app-debug-38:/layout_item_doc.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/layout/item_doc.xml"
     },
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_tune.xml.flat",
@@ -48,12 +56,20 @@
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/layout/activity_viewer.xml"
     },
     {
-        "merged": "com.example.texviewer.app-debug-38:/layout_activity_viewer.xml.flat",
-        "source": "com.example.texviewer.app-main-40:/layout/activity_viewer.xml"
+        "merged": "com.example.texviewer.app-debug-38:/drawable_ic_grid.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/drawable/ic_grid.xml"
     },
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_folder.xml.flat",
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/drawable/ic_folder.xml"
+    },
+    {
+        "merged": "com.example.texviewer.app-debug-38:/drawable_ic_cut.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/drawable/ic_cut.xml"
+    },
+    {
+        "merged": "com.example.texviewer.app-debug-38:/drawable_ic_drag_handle.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/drawable/ic_drag_handle.xml"
     },
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/menu_viewer.xml.flat",
@@ -68,6 +84,10 @@
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/mipmap-anydpi-v26/ic_launcher.xml"
     },
     {
+        "merged": "com.example.texviewer.app-debug-38:/menu_main.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/menu/main.xml"
+    },
+    {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/layout_sheet_display.xml.flat",
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/layout/sheet_display.xml"
     },
@@ -76,12 +96,28 @@
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/mipmap-anydpi-v26/ic_launcher_round.xml"
     },
     {
+        "merged": "com.example.texviewer.app-debug-38:/drawable_ic_copy.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/drawable/ic_copy.xml"
+    },
+    {
+        "merged": "com.example.texviewer.app-debug-38:/drawable_ic_list.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/drawable/ic_list.xml"
+    },
+    {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_add.xml.flat",
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/drawable/ic_add.xml"
     },
     {
+        "merged": "com.example.texviewer.app-debug-38:/drawable_ic_paste.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/drawable/ic_paste.xml"
+    },
+    {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/layout_activity_main.xml.flat",
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/layout/activity_main.xml"
+    },
+    {
+        "merged": "com.example.texviewer.app-debug-38:/drawable_ic_delete.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/drawable/ic_delete.xml"
     },
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_file.xml.flat",
@@ -94,6 +130,22 @@
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_bg_badge.xml.flat",
         "source": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-main-40:/drawable/bg_badge.xml"
+    },
+    {
+        "merged": "com.example.texviewer.app-debug-38:/drawable_ic_close.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/drawable/ic_close.xml"
+    },
+    {
+        "merged": "com.example.texviewer.app-debug-38:/drawable_bg_drag_handle.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/drawable/bg_drag_handle.xml"
+    },
+    {
+        "merged": "com.example.texviewer.app-debug-38:/layout_item_doc_list.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/layout/item_doc_list.xml"
+    },
+    {
+        "merged": "com.example.texviewer.app-debug-38:/drawable_ic_create_new_folder.xml.flat",
+        "source": "com.example.texviewer.app-main-40:/drawable/ic_create_new_folder.xml"
     },
     {
         "merged": "/home/shehab/.gradle/daemon/8.7/com.example.texviewer.app-debug-38:/drawable_ic_search.xml.flat",

@@ -6,7 +6,17 @@ import org.json.JSONArray
 import org.json.JSONObject
 import java.io.File
 
-data class Doc(val uri: String, val name: String, val thumb: String? = null, val dir: DocumentFile? = null)
+data class Doc(
+    val uri: String,
+    val name: String,
+    val thumb: String? = null,
+    /** Set only for folders; kept for the existing navigation checks. */
+    val dir: DocumentFile? = null,
+    /** The SAF document behind this entry, when it came from a browsable folder. */
+    val document: DocumentFile? = null,
+    /** True when this entry lives inside the app's managed library tree. */
+    val managed: Boolean = false
+)
 
 object Recents {
     private fun prefs(c: Context) = c.getSharedPreferences("recents", 0)

@@ -35,7 +35,7 @@
     <LinearLayout android:id="@+id/fabContainer" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="bottom|end" android:layout_margin="16dp"
         android:padding="8dp" android:clipChildren="false" android:clipToPadding="false" android:orientation="vertical" android:gravity="end">
         <com.google.android.material.floatingactionbutton.FloatingActionButton android:id="@+id/fabFolder" style="@style/Widget.Material3.FloatingActionButton.Secondary"
-            android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="12dp" app:srcCompat="@drawable/ic_folder_open" android:contentDescription="Open folder"/>
+            android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="12dp" app:srcCompat="@drawable/ic_create_new_folder" android:contentDescription="New folder"/>
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton android:id="@+id/fabFile" android:layout_width="wrap_content" android:layout_height="wrap_content"
             android:text="Open file" app:icon="@drawable/ic_add"/>
     </LinearLayout>
